@@ -1,0 +1,79 @@
+{
+
+    "total": 2,
+    "pauseTime": null,
+    "coordJobName": "nokia Daily Processes",
+    "coordJobPath": "wasb://global@wxxp1g1hd.blob.core.windows.net/Apps/ClientDaily/1.0.0/CoordinatorApp.xml",
+    "timeZone": "UTC",
+    "frequency": "1440",
+    "conf": "<configuration>\r\n <property>\r\n <name>appPath</name>\r\n <value>Apps/ClientDaily/1.0.0</value>\r\n </property>\r\n <property>\r\n <name>portalDbName</name>\r\n <value>Portal</value>\r\n </property>\r\n <property>\r\n <name>portalServerName</name>\r\n <value>xs28o9swk5</value>\r\n </property>\r\n <property>\r\n <name>oozie.coord.application.path</name>\r\n <value>wasb://global@wxxp1g1hd.blob.core.windows.net/Apps/ClientDaily/1.0.0/CoordinatorApp.xml</value>\r\n </property>\r\n <property>\r\n <name>accountId</name>\r\n <value>c9d9b404-ac44-45d6-bbe0-b87e179b4754</value>\r\n </property>\r\n <property>\r\n <name>clientContainer</name>\r\n <value>nokia</value>\r\n </property>\r\n <property>\r\n <name>mapreduce.job.user.name</name>\r\n <value>admin</value>\r\n </property>\r\n <property>\r\n <name>portalPassword</name>\r\n <value>alveolavak9R</value>\r\n </property>\r\n <property>\r\n <name>frequency</name>\r\n <value>1440</value>\r\n </property>\r\n <property>\r\n <name>group.name</name>\r\n <value>00000000-0000-0000-0000-000000000033</value>\r\n </property>\r\n <property>\r\n <name>dataMartServerName</name>\r\n <value>sqqp65a5je</value>\r\n </property>\r\n <property>\r\n <name>executionEnvironment</name>\r\n <value>production</value>\r\n </property>\r\n <property>\r\n <name>portalUserName</name>\r\n <value>Portalfriquetoz</value>\r\n </property>\r\n <property>\r\n <name>oozie.use.system.libpath</name>\r\n <value>true</value>\r\n </property>\r\n <property>\r\n <name>dataMartPassword</name>\r\n <value>b9_sn!i3</value>\r\n </property>\r\n <property>\r\n <name>accountUserName</name>\r\n <value>Nokia3k0x</value>\r\n </property>\r\n <property>\r\n <name>dataMartUserName</name>\r\n <value>NokiaDataMart8c2m</value>\r\n </property>\r\n <property>\r\n <name>accountDbName</name>\r\n <value>Nokia</value>\r\n </property>\r\n <property>\r\n <name>end</name>\r\n <value>2060-06-18T15:47Z</value>\r\n </property>\r\n <property>\r\n <name>yarn.app.mapreduce.am.staging-dir</name>\r\n <value>/user</value>\r\n </property>\r\n <property>\r\n <name>accountPassword</name>\r\n <value>f93n_s!s</value>\r\n </property>\r\n <property>\r\n <name>globalContainer</name>\r\n <value>global</value>\r\n </property>\r\n <property>\r\n <name>dataMartDbName</name>\r\n <value>NokiaDataMart</value>\r\n </property>\r\n <property>\r\n <name>accountServerName</name>\r\n <value>sqqp65a5je</value>\r\n </property>\r\n <property>\r\n <name>start</name>\r\n <value>2015-01-22T02:30Z</value>\r\n </property>\r\n <property>\r\n <name>user.name</name>\r\n <value>admin</value>\r\n </property>\r\n <property>\r\n <name>clientDatabase</name>\r\n <value>nokia</value>\r\n </property>\r\n <property>\r\n <name>globalStorageAccount</name>\r\n <value>wxxp1g1hd</value>\r\n </property>\r\n <property>\r\n <name>coordinatorName</name>\r\n <value>Nokia_Generate_and_export_reports_data</value>\r\n </property>\r\n <property>\r\n <name>clientStorageAccount</name>\r\n <value>nokiahd1</value>\r\n </property>\r\n <property>\r\n <name>globalDatabase</name>\r\n <value>global</value>\r\n </property>\r\n</configuration>",
+    "endTime": "Fri, 18 Jun 2060 15:47:00 GMT",
+    "executionPolicy": "FIFO",
+    "startTime": "Thu, 22 Jan 2015 02:30:00 GMT",
+    "timeUnit": "MINUTE",
+    "concurrency": 1,
+    "coordJobId": "0000077-150120210022672-oozie-hdp-C",
+    "lastAction": "Sat, 24 Jan 2015 02:30:00 GMT",
+    "status": "RUNNING",
+    "acl": "00000000-0000-0000-0000-000000000033",
+    "mat_throttling": 12,
+    "timeOut": 86400,
+    "nextMaterializedTime": "Sat, 24 Jan 2015 02:30:00 GMT",
+    "bundleId": null,
+    "toString": "Coordinator application id[0000077-150120210022672-oozie-hdp-C] status[RUNNING]",
+    "coordExternalId": null,
+    "group": "00000000-0000-0000-0000-000000000033",
+    "user": "admin",
+    "consoleUrl": null,
+    "actions": 
+
+[
+
+{
+
+    "errorMessage": null,
+    "lastModifiedTime": "Thu, 22 Jan 2015 02:57:51 GMT",
+    "createdTime": "Thu, 22 Jan 2015 02:26:03 GMT",
+    "status": "SUCCEEDED",
+    "pushMissingDependencies": null,
+    "externalStatus": null,
+    "type": null,
+    "nominalTime": "Thu, 22 Jan 2015 02:30:00 GMT",
+    "externalId": "0000117-150120210022672-oozie-hdp-W",
+    "id": "0000077-150120210022672-oozie-hdp-C@1",
+    "createdConf": null,
+    "missingDependencies": "",
+    "runConf": null,
+    "actionNumber": 1,
+    "errorCode": null,
+    "trackerUri": null,
+    "toString": "CoordinatorAction name[0000077-150120210022672-oozie-hdp-C@1] status[SUCCEEDED]",
+    "coordJobId": "0000077-150120210022672-oozie-hdp-C",
+    "consoleUrl": null
+
+},
+
+        {
+            "errorMessage": null,
+            "lastModifiedTime": "Fri, 23 Jan 2015 02:57:56 GMT",
+            "createdTime": "Fri, 23 Jan 2015 02:28:43 GMT",
+            "status": "SUCCEEDED",
+            "pushMissingDependencies": null,
+            "externalStatus": null,
+            "type": null,
+            "nominalTime": "Fri, 23 Jan 2015 02:30:00 GMT",
+            "externalId": "0000023-150123001314837-oozie-hdp-W",
+            "id": "0000077-150120210022672-oozie-hdp-C@2",
+            "createdConf": null,
+            "missingDependencies": "",
+            "runConf": null,
+            "actionNumber": 2,
+            "errorCode": null,
+            "trackerUri": null,
+            "toString": "CoordinatorAction name[0000077-150120210022672-oozie-hdp-C@2] status[SUCCEEDED]",
+            "coordJobId": "0000077-150120210022672-oozie-hdp-C",
+            "consoleUrl": null
+        }
+    ]
+
+}

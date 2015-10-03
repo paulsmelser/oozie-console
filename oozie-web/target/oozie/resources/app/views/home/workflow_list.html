@@ -1,0 +1,25 @@
+<div class="wrapper scroll-y" ng-controller="WorkflowListController">
+	<h1>{{wf.appName}}</h1>
+	<div class="container-fluid table-view">
+	<h3>Recent Workflows</h3>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th>Name</th>
+				<th>Id</th>
+				<th>Status</th>
+			</thead>
+			<tbody>
+			<tr ng-repeat="wf in wfs" ng-click="workflow(wf)" class="clickable">
+				<td ng-bind="wf.appName"></td>
+				<td ng-bind="wf.id"></td>
+				<td ng-bind="wf.status"></td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+		<div class="footer">
+		<button class="btn btn-primary pull-right" ng-click="refresh()">Refresh</button>
+		</div>
+</div>
