@@ -14,51 +14,51 @@ import simplemapper.MapperException;
 
 public interface OozieClient {
 
-    public Collection<Workflow> getWorklows(int len) throws InstantiationException, IllegalAccessException,
+    Collection<Workflow> getWorkflows(int len) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 			NoSuchMethodException, MapperException;
 
-    public Collection<Coordinator> getRunningCoordinators(int len) throws InstantiationException,
+    Collection<Coordinator> getRunningCoordinators(int len) throws InstantiationException,
 			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
 			InvocationTargetException, NoSuchMethodException, MapperException;
 
-    public Workflow getWorkflow(String id, int len) throws InstantiationException, IllegalAccessException,
+    Workflow getWorkflow(String id, int len) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 			NoSuchMethodException, MapperException;
 
-    public Coordinator getCoordinator(String id, int len) throws InstantiationException,
+    Coordinator getCoordinator(String id, int len) throws InstantiationException,
 			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
 			InvocationTargetException, NoSuchMethodException, MapperException;
 
-    public WorkflowAction getWorkflowAction(String id, String name) throws InstantiationException,
+    WorkflowAction getWorkflowAction(String id, String name) throws InstantiationException,
 			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
 			InvocationTargetException, NoSuchMethodException, MapperException;
 
-    public CoordinatorAction getCoordinatorAction(String id, int index) throws InstantiationException,
+    CoordinatorAction getCoordinatorAction(String id, int index) throws InstantiationException,
 			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
 			InvocationTargetException, NoSuchMethodException, MapperException;
 
-    public void kill(String id);
+    void kill(String id);
 
-    public void rerun(String id) throws InstantiationException, IllegalAccessException,
+    void rerun(String id) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 			NoSuchMethodException, MapperException;
 
-    public void rerun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
+    void rerun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 			NoSuchMethodException, MapperException;
 
-    public void rerun(String id, String skipNodes, Configuration config) throws InstantiationException,
+    void rerun(String id, String skipNodes, Configuration config) throws InstantiationException,
 	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
 	    InvocationTargetException, NoSuchMethodException;
 
-    public void suspend(String id);
+    void suspend(String id);
 
-    public void resume(String id);
+    void resume(String id);
 
-    public void start(String id);
+    void start(String id);
 
-    public void submit(Map<String, String> conf);
+    void submit(Map<String, String> conf);
 
-    public GetStatusResponse getStatus();
+    GetStatusResponse getStatus();
 }

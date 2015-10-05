@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/")
 public class HomeController { 
 
     private static final Log logger = LogFactory.getLog(HomeController.class);

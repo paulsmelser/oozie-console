@@ -425,8 +425,6 @@ public class EncryptionService {
      * 
      * @param encryptedVersion
      *            The encrypted string
-     * @param keyData
-     *            The byte[] representation of the Key used in encryption.
      * @return The decrypted String.
      * @throws EncryptionException
      * @throws InvalidKeyException

@@ -19,7 +19,7 @@ public class OozieClientStub implements OozieClient {
 
     private OozieGatewayStubImpl gateway = new OozieGatewayStubImpl();
 
-    public Collection<Workflow> getWorklows(int len) throws InstantiationException, IllegalAccessException,
+    public Collection<Workflow> getWorkflows(int len) throws InstantiationException, IllegalAccessException,
 	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 	    NoSuchMethodException {
 	// TODO Auto-generated method stub

@@ -1,0 +1,91 @@
+buildscript {
+    ext {
+        springBootVersion = '1.1.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'oozie-console'
+    version = '1.0.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+loadConfiguration()
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile project(":oozie-rest-client")
+    compile project(":oozie-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies{
+        compile("com.thoughtworks.xstream:xstream:1.4.7")
+        compile("com.sun.jersey:jersey-client:1.18.3")
+        compile("com.smelser.code:SimpleMapper:0.0.2-RELEASE")
+        compile("com.owlike:genson:0.99")
+        compile("com.google.code.gson:gson:2.3.1")
+        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+        testCompile("junit:junit")
+        testCompile("org.mockito:mockito-core")
+    }
+
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+}
+bootRun {
+    main = 'org.smelser.web.oozie.Application'
+    systemProperties = [
+            'spring.profiles.active': "$config.spring.profiles.active"
+    ]
+}
+
+subprojects {
+    group = 'com.silanis.esl'
+    version = '1.0.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+def loadConfiguration() {
+    def environment = hasProperty('env') ? env : 'dev'
+    System.setProperty('environment', environment)
+    println "Environment is set to $environment"
+
+    def configFile = file('config.groovy')
+    def config = new ConfigSlurper(environment).parse(configFile.toURL())
+    extensions.add('config', config)
+}

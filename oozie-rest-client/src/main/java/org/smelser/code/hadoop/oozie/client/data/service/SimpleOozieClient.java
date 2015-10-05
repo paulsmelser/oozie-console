@@ -40,7 +40,7 @@ public class SimpleOozieClient implements OozieClient {
 	gateway = new OozieGatewayImpl(account.getClusterUri(), account.getUsername(), account.getPassword());
     }
 
-    public Collection<Workflow> getWorklows(int len) throws InstantiationException, IllegalAccessException,
+    public Collection<Workflow> getWorkflows(int len) throws InstantiationException, IllegalAccessException,
 			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
 			NoSuchMethodException, MapperException {
 	GetWorkflowListResponse response = gateway.getWorkflows();

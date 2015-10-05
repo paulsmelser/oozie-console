@@ -113,7 +113,7 @@ public class PortalRestController {
     public Collection<Workflow> getWorkflows(HttpSession session, @RequestHeader("Cookie") String cookie)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			NoSuchFieldException, SecurityException, InvocationTargetException, NoSuchMethodException, MapperException {
-	return ensureClient(cookie).getWorklows(100);
+	return ensureClient(cookie).getWorkflows(100);
     }
 
     @RequestMapping(value = "coordinator/{id}", method = RequestMethod.GET)
