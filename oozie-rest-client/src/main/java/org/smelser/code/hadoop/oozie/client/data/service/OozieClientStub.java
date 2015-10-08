@@ -1,61 +1,46 @@
 package org.smelser.code.hadoop.oozie.client.data.service;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Map;
-
 import org.smelser.code.hadoop.oozie.client.data.service.stubs.OozieGatewayStubImpl;
 import org.smelser.code.hadoop.oozie.client.dto.GetStatusResponse;
-import org.smelser.code.hadoop.oozie.client.entities.Configuration;
-import org.smelser.code.hadoop.oozie.client.entities.Coordinator;
-import org.smelser.code.hadoop.oozie.client.entities.CoordinatorAction;
-import org.smelser.code.hadoop.oozie.client.entities.Workflow;
-import org.smelser.code.hadoop.oozie.client.entities.WorkflowAction;
-
+import org.smelser.code.hadoop.oozie.client.entities.*;
 import simplemapper.Mapper;
 import simplemapper.MapperException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
 
 public class OozieClientStub implements OozieClient {
 
     private OozieGatewayStubImpl gateway = new OozieGatewayStubImpl();
 
-    public Collection<Workflow> getWorkflows(int len) throws InstantiationException, IllegalAccessException,
-	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-	    NoSuchMethodException {
+    public Collection<Workflow> getWorkflows(int len)  {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    public Collection<Coordinator> getRunningCoordinators(int len) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
-	// TODO Auto-generated method stub
-	return null;
+    public Collection<Coordinator> getRunningCoordinators(int len) {
+	    // TODO Auto-generated method stub
+	    Coordinator coord = new Coordinator();
+        return new ArrayList<>(Arrays.asList(coord));
     }
 
-    public Workflow getWorkflow(String id, int len) throws InstantiationException, IllegalAccessException,
-            IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-            NoSuchMethodException, MapperException {
+    public Workflow getWorkflow(String id, int len) throws MapperException {
 	return Mapper.map(gateway.getWorkflow(id, len), Workflow.class);
     }
 
-    public Coordinator getCoordinator(String id, int len) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public Coordinator getCoordinator(String id, int len)  {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    public WorkflowAction getWorkflowAction(String id, String name) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public WorkflowAction getWorkflowAction(String id, String name) {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    public CoordinatorAction getCoordinatorAction(String id, int index) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public CoordinatorAction getCoordinatorAction(String id, int index){
 	// TODO Auto-generated method stub
 	return null;
     }
@@ -65,16 +50,12 @@ public class OozieClientStub implements OozieClient {
 
     }
 
-    public void rerun(String id) throws InstantiationException, IllegalAccessException,
-	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-	    NoSuchMethodException {
+    public void rerun(String id)  {
 	// TODO Auto-generated method stub
 
     }
 
-    public void rerun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
-	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-	    NoSuchMethodException {
+    public void rerun(String id, String skipNodes)  {
 	// TODO Auto-generated method stub
 
     }
@@ -99,9 +80,7 @@ public class OozieClientStub implements OozieClient {
 
     }
 
-    public void rerun(String id, String skipNodes, Configuration config) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public void rerun(String id, String skipNodes, Configuration config) {
 	// TODO Auto-generated method stub
 
     }

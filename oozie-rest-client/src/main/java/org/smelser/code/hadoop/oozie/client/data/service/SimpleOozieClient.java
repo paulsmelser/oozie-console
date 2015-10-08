@@ -1,29 +1,17 @@
 package org.smelser.code.hadoop.oozie.client.data.service;
 
-import java.lang.reflect.InvocationTargetException;
+import org.smelser.code.hadoop.oozie.client.HadoopAccount;
+import org.smelser.code.hadoop.oozie.client.dto.*;
+import org.smelser.code.hadoop.oozie.client.dto.mapper.CoordinatorMapperConfiguration;
+import org.smelser.code.hadoop.oozie.client.dto.mapper.WorkflowMapperConfiguration;
+import org.smelser.code.hadoop.oozie.client.entities.*;
+import simplemapper.Mapper;
+import simplemapper.MapperException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.smelser.code.hadoop.oozie.client.HadoopAccount;
-import org.smelser.code.hadoop.oozie.client.dto.CoordinatorActionDto;
-import org.smelser.code.hadoop.oozie.client.dto.CoordinatorDto;
-import org.smelser.code.hadoop.oozie.client.dto.GetRunningCoordinatorsResponse;
-import org.smelser.code.hadoop.oozie.client.dto.GetStatusResponse;
-import org.smelser.code.hadoop.oozie.client.dto.GetWorkflowListResponse;
-import org.smelser.code.hadoop.oozie.client.dto.WorkflowActionDto;
-import org.smelser.code.hadoop.oozie.client.dto.WorkflowDto;
-import org.smelser.code.hadoop.oozie.client.dto.mapper.CoordinatorMapperConfiguration;
-import org.smelser.code.hadoop.oozie.client.dto.mapper.WorkflowMapperConfiguration;
-import org.smelser.code.hadoop.oozie.client.entities.Configuration;
-import org.smelser.code.hadoop.oozie.client.entities.Coordinator;
-import org.smelser.code.hadoop.oozie.client.entities.CoordinatorAction;
-import org.smelser.code.hadoop.oozie.client.entities.Workflow;
-import org.smelser.code.hadoop.oozie.client.entities.WorkflowAction;
-
-import simplemapper.Mapper;
-import simplemapper.MapperException;
 
 public class SimpleOozieClient implements OozieClient {
 
@@ -40,9 +28,7 @@ public class SimpleOozieClient implements OozieClient {
 	gateway = new OozieGatewayImpl(account.getClusterUri(), account.getUsername(), account.getPassword());
     }
 
-    public Collection<Workflow> getWorkflows(int len) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
+    public Collection<Workflow> getWorkflows(int len) throws MapperException {
 	GetWorkflowListResponse response = gateway.getWorkflows();
 	Collection<Workflow> list = new ArrayList<Workflow>();
 	for (WorkflowDto w : response.getWorkflows()) {
@@ -51,9 +37,7 @@ public class SimpleOozieClient implements OozieClient {
 	return list;
     }
 
-    public Collection<Coordinator> getRunningCoordinators(int len) throws InstantiationException,
-			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-			InvocationTargetException, NoSuchMethodException, MapperException {
+    public Collection<Coordinator> getRunningCoordinators(int len) throws MapperException {
 	GetRunningCoordinatorsResponse coords = gateway.getRunningCoordinators();
 	Collection<Coordinator> result = new ArrayList<Coordinator>();
 	for (CoordinatorDto dto : coords.getCoordinatorjobs()) {
@@ -62,21 +46,15 @@ public class SimpleOozieClient implements OozieClient {
 	return result;
     }
 
-    public Workflow getWorkflow(String id, int len) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
+    public Workflow getWorkflow(String id, int len) throws  MapperException {
 	return Mapper.map(gateway.getWorkflow(id, len), Workflow.class);
     }
 
-    public Coordinator getCoordinator(String id, int len) throws InstantiationException,
-			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-			InvocationTargetException, NoSuchMethodException, MapperException {
+    public Coordinator getCoordinator(String id, int len) throws MapperException {
 	return Mapper.map(gateway.getCoordinator(id, len), Coordinator.class);
     }
 
-    public WorkflowAction getWorkflowAction(String id, String name) throws InstantiationException,
-			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-			InvocationTargetException, NoSuchMethodException, MapperException {
+    public WorkflowAction getWorkflowAction(String id, String name) throws MapperException {
 	Workflow response = Mapper.map(gateway.getWorkflow(id, 100), Workflow.class);
 
 	WorkflowAction action = null;
@@ -89,9 +67,7 @@ public class SimpleOozieClient implements OozieClient {
 	return action;
     }
 
-    public CoordinatorAction getCoordinatorAction(String id, int index) throws InstantiationException,
-			IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-			InvocationTargetException, NoSuchMethodException, MapperException {
+    public CoordinatorAction getCoordinatorAction(String id, int index) throws  MapperException {
 	Coordinator coord = Mapper.map(gateway.getCoordinator(id, 100), Coordinator.class);
 	Iterator<CoordinatorAction> it = coord.getActions().iterator();
 
@@ -105,19 +81,21 @@ public class SimpleOozieClient implements OozieClient {
 	gateway.kill(id);
     }
 
-    public void rerun(String id) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
-	gateway.reRun(id);
+    public void rerun(String id) throws OozieException {
+		try {
+			gateway.reRun(id);
+		} catch (Exception e) {
+			throw new OozieException(e);
+		}
+	}
 
-    }
-
-    public void rerun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
-	gateway.reRun(id, skipNodes);
-
-    }
+    public void rerun(String id, String skipNodes) throws  OozieException {
+		try {
+			gateway.reRun(id, skipNodes);
+		} catch (Exception e) {
+			throw new OozieException(e);
+		}
+	}
 
     public void suspend(String id) {
 	gateway.suspend(id);
@@ -135,12 +113,13 @@ public class SimpleOozieClient implements OozieClient {
 	gateway.submit(conf);
     }
 
-    public void rerun(String id, String skipNodes, Configuration config) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
-	gateway.reRun(id, skipNodes, config);
-
-    }
+    public void rerun(String id, String skipNodes, Configuration config) throws OozieException {
+		try {
+			gateway.reRun(id, skipNodes, config);
+		} catch (Exception e) {
+			throw new OozieException(e);
+		}
+	}
 
     public GetStatusResponse getStatus() {
 	return gateway.getStatus();

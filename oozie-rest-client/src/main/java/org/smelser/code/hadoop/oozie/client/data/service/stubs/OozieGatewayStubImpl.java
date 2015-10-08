@@ -72,9 +72,7 @@ public class OozieGatewayStubImpl implements OozieGateway {
 
     }
 
-    public void reRun(String id) throws InstantiationException, IllegalAccessException,
-	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-	    NoSuchMethodException {
+    public void reRun(String id) {
 	// TODO Auto-generated method stub
 
     }
@@ -99,16 +97,12 @@ public class OozieGatewayStubImpl implements OozieGateway {
 
     }
 
-    public void reRun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
-	    IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-	    NoSuchMethodException {
+    public void reRun(String id, String skipNodes) {
 	// TODO Auto-generated method stub
 
     }
 
-    public void reRun(String id, String skipNodes, Configuration config) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public void reRun(String id, String skipNodes, Configuration config) {
 	// TODO Auto-generated method stub
 
     }

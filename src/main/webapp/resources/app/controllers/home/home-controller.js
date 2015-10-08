@@ -24,17 +24,17 @@ app.controller('MainController',[ '$scope', '$http', '$location', function($scop
 }]);
 
 app.controller('HomeController',[ '$scope', '$http', '$location', function($scope, $http, $location) {
-//	$scope.$emit('LOAD');
-//	$http.get('rest/v1/cookie').success(function(data){
-//		$scope.user = data["username"];
-//		$scope.$emit('UNLOAD');
-//		$scope.userInput = { clusterUri: data["url"], username: data["username"], password: data["password"]}
-////		$scope.userInput.clusterUri = data["url"];
-////		$scope.userInput.username = data["username"];
-////		$scope.userInput.password = data["password"];
-//		$scope.loggedIn = true;
-//		$scope.$emit('UNLOAD');
-//	});
+	$scope.$emit('LOAD');
+	$http.get('rest/v1/cookie').success(function(data){
+		$scope.user = data["username"];
+		$scope.$emit('UNLOAD');
+		$scope.userInput = { clusterUri: data["url"], username: data["username"], password: data["password"]}
+//		$scope.userInput.clusterUri = data["url"];
+//		$scope.userInput.username = data["username"];
+//		$scope.userInput.password = data["password"];
+		$scope.loggedIn = true;
+		$scope.$emit('UNLOAD');
+	});
 }]);
 
 app.controller('CoordDetailsController', [ '$scope', '$http', '$stateParams', '$location', function($scope, $http, $stateParams, $location){

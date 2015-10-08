@@ -65,7 +65,7 @@ allprojects {
     }
 }
 bootRun {
-    main = 'org.smelser.web.oozie.Application'
+    main = 'org.smelser.oozie.Application'
     systemProperties = [
             'spring.profiles.active': "$config.spring.profiles.active"
     ]

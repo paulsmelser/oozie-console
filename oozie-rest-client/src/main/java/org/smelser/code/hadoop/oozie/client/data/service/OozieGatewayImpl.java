@@ -92,9 +92,7 @@ public class OozieGatewayImpl implements OozieGateway {
 	return response;
     }
 
-    public void reRun(String id) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
+    public void reRun(String id) throws MapperException {
 	WorkflowDto wf = getWorkflow(id, 100);
 
 	Workflow workflow = Mapper.map(wf, Workflow.class);
@@ -113,9 +111,7 @@ public class OozieGatewayImpl implements OozieGateway {
 		.type(MediaType.APPLICATION_XML).put(ClientResponse.class, body);
     }
 
-    public void reRun(String id, String skipNodes) throws InstantiationException, IllegalAccessException,
-			IllegalArgumentException, NoSuchFieldException, SecurityException, InvocationTargetException,
-			NoSuchMethodException, MapperException {
+    public void reRun(String id, String skipNodes) throws MapperException {
 	WorkflowDto wf = getWorkflow(id, 100);
 
 	Workflow workflow = Mapper.map(wf, Workflow.class);
@@ -136,9 +132,7 @@ public class OozieGatewayImpl implements OozieGateway {
 		.put(ClientResponse.class, body);
     }
 
-    public void reRun(String id, String skipNodes, Configuration config) throws InstantiationException,
-	    IllegalAccessException, IllegalArgumentException, NoSuchFieldException, SecurityException,
-	    InvocationTargetException, NoSuchMethodException {
+    public void reRun(String id, String skipNodes, Configuration config)  {
 	config.remove("oozie.coord.application.path");
 	config.add("oozie.wf.rerun.skip.nodes", skipNodes);
 	String body = ConfigurationSerializer.toXml(config);
