@@ -8,10 +8,10 @@
 //import java.util.HashMap;
 //import java.util.Map;
 //
-//import org.smelser.code.hadoop.oozie.client.HadoopAccount;
-//import org.smelser.code.hadoop.oozie.client.data.service.OozieClient;
-//import org.smelser.code.hadoop.oozie.client.data.service.SimpleOozieClient;
-//import org.smelser.code.hadoop.oozie.client.entities.Coordinator;
+//import HadoopAccount;
+//import OozieClient;
+//import SimpleOozieClient;
+//import Coordinator;
 //
 //import junit.framework.Test;
 //import junit.framework.TestCase;

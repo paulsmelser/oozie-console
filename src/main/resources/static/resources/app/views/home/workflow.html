@@ -1,0 +1,88 @@
+<div class="wrapper scroll-y" ng-controller="WfDetailsController">
+
+	<h1 ng-bind="wf.appName"></h1>
+	<h2>Properties</h2>
+
+	<div class="table-responsive">
+		<table class="table table-condensed">
+			<tr>
+				<th>Name</th>
+				<th>Value</th>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td ng-bind="wf.appName"></td>
+			</tr>
+			<tr>
+				<td>Id</td>
+				<td ng-bind="wf.id"></td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td ng-bind="wf.status"></td>
+			</tr>
+			<tr>
+				<td>Console Url</td>
+				<td ng-bind="wf.consoleUrl"></td>
+			</tr>
+			<tr>
+				<td>Start Time</td>
+				<td ng-bind="wf.startTime"></td>
+			</tr>
+			<tr>
+				<td>End Time</td>
+				<td ng-bind="wf.endTime"></td>
+			</tr>
+			<tr>
+				<td>Last Modified</td>
+				<td ng-bind="wf.lastModTime"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="container-fluid table-view">
+	<div class="table-responsive">
+		
+		<h2>Actions</h2>
+		<table class="table table-striped table-condensed">
+			<tr>
+				<th>Status</th>
+				<th>Name</th>
+				<th>Next Action</th>
+				<th>Start Time</th>
+				<th>External Id</th>
+				<th>Error Message</th>
+			</tr>
+
+			<tbody>
+				<tr ng-repeat="action in wf.actions"
+					ng-click="actionDetails(action)" class="clickable">
+					<td ng-bind="action.status"></td>
+					<td ng-bind="action.name"></td>
+					<td ng-bind="action.transition"></td>
+					<td ng-bind="action.startTime"></td>
+					<td ng-bind="action.externalId"></td>
+					<td ng-bind="action.errorMessage"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div class="table-responsive">
+		<h2>Configuration</h2>
+		<table class="table table-striped  table-fixed">
+			<tr>
+				<th>Name</th>
+				<th>Value</th>
+			</tr>
+			<tr ng-repeat="prop in wf.conf.properties">
+				<td ng-bind="prop.name" class="table-col-large"></td>
+				<td ng-bind="prop.value" class="table-col-large"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="footer">
+		<button class="btn btn-danger pull-right" ng-click="kill()">Kill</button>
+		<button class="btn btn-success pull-right" ng-click="rerun()">ReRun</button>
+		<button class="btn btn-primary pull-right" ng-click="refresh()">Refresh</button>
+	</div>
+</div>
