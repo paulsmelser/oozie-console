@@ -1,0 +1,151 @@
+.list-group-item {
+	height: 41px;
+	font-size: 14px;
+}
+
+.row-no-margin{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+.title-bar {
+	min-height: 210px;	
+	position: relative;
+}
+.footer{
+position: fixed;
+bottom: 0px;
+height: 100px;
+background-color: #ffffff;
+  opacity: .95;
+margin-left: -10px;
+right: 0px;
+/* left: 280px; */
+left: 0px;
+z-index: 1;
+padding-left: 0px;
+line-height: 32px;
+padding-top: 30px;
+padding-right: 35px;
+}
+
+.btn{
+	min-width: 100px;
+}
+.maincontent {
+	margin-bottom: 100px;
+	position: static;
+	padding: 35px 65px;
+}
+
+.main-title{
+	font-size: 45px;
+	font-family: "Segoe UI", "Segoe UI Light", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  	text-rendering:optimizeLegibility;
+  	font-weight: 100;
+}
+
+.username{
+  padding-top: 3px;
+  padding-left: 4px;
+  font-size: 17px;
+  color: #ddd;
+}
+}
+body {
+  background: #111;
+  color:#333;
+  font-family: "Segoe UI", "Segoe UI Light", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-rendering:optimizeLegibility
+}
+
+.clickable{
+	cursor: pointer;
+}
+
+.loader {
+	color: grey;
+}
+#userLogin{
+	display: table-cell;
+	vertical-align: middle;
+	font-family: "Segoe UI", "Segoe UI Light", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-weight: 100;
+  	padding-top: 18px;
+}
+.ok-3{
+	font-size: 3em;
+	color: #00CC33;
+}
+
+.table-view{
+	padding: 20px;
+	background-color: #ffffff;
+}
+
+.ok-2{
+	font-size: 2em;
+	color: #00CC33;
+}
+
+.ok-1{
+	font-size: 1em;
+	color: #00CC33;
+}
+.header-title{
+	bottom: 0px;
+	padding-left: 10px;
+	Padding-right: 5px;
+}
+
+.logo{
+	max-height: 45px;
+	min-height: 20px
+}
+
+.btn{
+	margin: 5px;
+}
+
+.table-fixed{
+	table-layout: fixed;
+}
+
+.table-col-large{
+	overflow: wrap;
+	word-wrap: break-word;
+}
+
+label{
+  font-weight: normal;
+  font-size: 19px;
+  color: #ddd;
+}
+
+.title{
+	font-size: 20px;
+	font-weight: 100;
+	margin-left: 13px;
+}
+
+.title-table{
+	display: table;
+	height: 100px;
+	overflow: hidden;
+}
+
+.title-table-cell{
+	padding-top: 7px;
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+.editable-input{
+	width: 100%;
+	height: 90%;
+	border-radius: 4px;
+}
+
+.editable-wrap{
+	width: 75%;
+	height: 90%;
+}

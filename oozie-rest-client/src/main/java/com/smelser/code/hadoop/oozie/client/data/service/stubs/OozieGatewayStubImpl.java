@@ -25,25 +25,25 @@ public class OozieGatewayStubImpl implements OozieGateway {
     }
 
     public GetRunningCoordinatorsResponse getRunningCoordinators() {
-	Collection<CoordinatorDto> list = null;
-	try {
-	    Resource resource = new Resource("CoordinatorList.json");
-	    Gson gson = new Gson();
+        Collection<CoordinatorDto> list = null;
+        try {
+            Resource resource = new Resource("CoordinatorList.json");
+            Gson gson = new Gson();
 
-	    list = gson.fromJson(resource.getAsString(), new ArrayList<CoordinatorDto>().getClass());
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	GetRunningCoordinatorsResponse response = new GetRunningCoordinatorsResponse();
-	response.setCoordinatorjobs(list);
-	return response;
+            list = gson.fromJson(resource.getAsString(), new ArrayList<CoordinatorDto>().getClass());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        GetRunningCoordinatorsResponse response = new GetRunningCoordinatorsResponse();
+        response.setCoordinatorjobs(list);
+        return response;
     }
 
     public CoordinatorDto getCoordinator(String id, int len) {
-	CoordinatorDto dto = new CoordinatorDto();
-	dto.setAcl("test");
-	return dto;
+        CoordinatorDto dto = new CoordinatorDto();
+        dto.setAcl("test");
+        return dto;
     }
 
     public WorkflowDto getWorkflow(String id, int len) {
