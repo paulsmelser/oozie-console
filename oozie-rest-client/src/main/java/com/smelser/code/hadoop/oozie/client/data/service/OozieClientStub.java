@@ -1,38 +1,44 @@
 package com.smelser.code.hadoop.oozie.client.data.service;
 
-import com.smelser.code.hadoop.oozie.client.data.service.stubs.OozieGatewayStubImpl;
+import com.smelser.code.hadoop.oozie.SpringProfiles;
+import com.smelser.code.hadoop.oozie.client.data.service.stubs.OozieGatewayStub;
+import com.smelser.code.hadoop.oozie.client.dto.GetWorkflowListResponse;
+import com.smelser.code.hadoop.oozie.client.dto.WorkflowDto;
 import com.smelser.code.hadoop.oozie.client.entities.*;
 import com.smelser.code.hadoop.oozie.client.dto.GetStatusResponse;
+import org.springframework.context.annotation.Profile;
 import simplemapper.Mapper;
 import simplemapper.MapperException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
+import static java.util.Collections.*;
+
+@Profile({SpringProfiles.DEVELOPMENT, SpringProfiles.DEVELOPMENT})
 public class OozieClientStub implements OozieClient {
 
-    private OozieGatewayStubImpl gateway = new OozieGatewayStubImpl();
+    private OozieGatewayStub gateway = new OozieGatewayStub();
 
-    public Collection<Workflow> getWorkflows(int len)  {
-	// TODO Auto-generated method stub
-	return null;
+    public Collection<Workflow> getWorkflows(int len) throws MapperException {
+	    GetWorkflowListResponse response = gateway.getWorkflows();
+        Collection<Workflow> list = new ArrayList<>();
+        for (WorkflowDto w : response.getWorkflows()) {
+            list.add(Mapper.map(w, Workflow.class));
+        }
+        return list;
     }
 
     public Collection<Coordinator> getRunningCoordinators(int len) {
-	    // TODO Auto-generated method stub
 	    Coordinator coord = new Coordinator();
-        return new ArrayList<>(Arrays.asList(coord));
+        return new ArrayList<>(singletonList(coord));
     }
 
     public Workflow getWorkflow(String id, int len) throws MapperException {
 	return Mapper.map(gateway.getWorkflow(id, len), Workflow.class);
     }
 
-    public Coordinator getCoordinator(String id, int len)  {
-	// TODO Auto-generated method stub
-	return null;
+    public Coordinator getCoordinator(String id, int len) throws MapperException {
+	return Mapper.map(gateway.getCoordinator(id, len), Coordinator.class);
     }
 
     public WorkflowAction getWorkflowAction(String id, String name) {

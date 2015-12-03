@@ -21,13 +21,13 @@ public class Configuration {
     }
 
     public void remove(String name) {
-	List<Property> newProps = new ArrayList<Property>();
-	for (Property prop : properties) {
-	    if (!prop.getName().equalsIgnoreCase(name)) {
-		newProps.add(prop);
-	    }
-	}
-	this.properties = newProps;
+        List<Property> newProps = new ArrayList<>();
+        for (Property prop : properties) {
+            if (!prop.getName().equalsIgnoreCase(name)) {
+                newProps.add(prop);
+            }
+        }
+        this.properties = newProps;
     }
 
     public void add(String key, String value) {

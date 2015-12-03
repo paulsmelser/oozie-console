@@ -1,12 +1,12 @@
 environments {
     dev {
-        spring.profiles.active = 'externalStubbed'
+        spring.profiles.active = 'dev'
     }
 
     test {
-        spring.profiles.active = 'externalFake'
+        spring.profiles.active = 'test'
     }
     prod {
-        spring.profiles.active = 'external'
+        spring.profiles.active = 'prod'
     }
 }

@@ -18,23 +18,23 @@ public class SimpleOozieClient implements OozieClient {
     private OozieGateway gateway;
 
     static {
-	Mapper.createMap(CoordinatorDto.class, Coordinator.class, new CoordinatorMapperConfiguration());
-	Mapper.createMap(CoordinatorActionDto.class, CoordinatorAction.class);
-	Mapper.createMap(WorkflowDto.class, Workflow.class, new WorkflowMapperConfiguration());
-	Mapper.createMap(WorkflowActionDto.class, WorkflowAction.class);
+		Mapper.createMap(CoordinatorDto.class, Coordinator.class, new CoordinatorMapperConfiguration());
+		Mapper.createMap(CoordinatorActionDto.class, CoordinatorAction.class);
+		Mapper.createMap(WorkflowDto.class, Workflow.class, new WorkflowMapperConfiguration());
+		Mapper.createMap(WorkflowActionDto.class, WorkflowAction.class);
     }
 
     public SimpleOozieClient(HadoopAccount account) {
-	gateway = new OozieGatewayImpl(account.getClusterUri(), account.getUsername(), account.getPassword());
+		gateway = new DefaultOozieGateway(account);
     }
 
     public Collection<Workflow> getWorkflows(int len) throws MapperException {
-	GetWorkflowListResponse response = gateway.getWorkflows();
-	Collection<Workflow> list = new ArrayList<Workflow>();
-	for (WorkflowDto w : response.getWorkflows()) {
-	    list.add(Mapper.map(w, Workflow.class));
-	}
-	return list;
+		GetWorkflowListResponse response = gateway.getWorkflows();
+		Collection<Workflow> list = new ArrayList<Workflow>();
+		for (WorkflowDto w : response.getWorkflows()) {
+			list.add(Mapper.map(w, Workflow.class));
+		}
+		return list;
     }
 
     public Collection<Coordinator> getRunningCoordinators(int len) throws MapperException {

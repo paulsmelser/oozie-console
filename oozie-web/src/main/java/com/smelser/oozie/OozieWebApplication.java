@@ -30,6 +30,7 @@ public class OozieWebApplication {
         //NB, selecting HTML5 as the template mode.
         resolver.setTemplateMode("HTML5");
         resolver.setCacheable(false);
+
         return resolver;
     }
 }
