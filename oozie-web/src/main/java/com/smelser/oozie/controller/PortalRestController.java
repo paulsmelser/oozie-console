@@ -70,19 +70,19 @@ public class PortalRestController {
     }
 
     private OozieClient ensureClient(String cookie) {
-	if (client != null) {
-	    return client;
-	}
-	if (!cookie.contains("_oc")) {
-	    return null;
-	}
-	UserLogin auth = getAuthFromCookie(cookie);
-	if (client == null) {
+        if (client != null) {
+            return client;
+        }
+        if (!cookie.contains("_oc")) {
+            return null;
+        }
+        UserLogin auth = getAuthFromCookie(cookie);
+        if (client == null) {
 
-	    client = factory.create(auth.getUrl(), auth.getUsername(), auth.getPassword());
+            client = factory.create(auth.getUrl(), auth.getUsername(), auth.getPassword());
 
-	}
-	return client;
+        }
+        return client;
     }
 
     @RequestMapping(value = "workflows", method = RequestMethod.GET)

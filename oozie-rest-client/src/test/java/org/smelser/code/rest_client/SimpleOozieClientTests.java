@@ -10,7 +10,7 @@
 //
 //import HadoopAccount;
 //import OozieClient;
-//import SimpleOozieClient;
+//import DefaultOozieClient;
 //import Coordinator;
 //
 //import junit.framework.Test;

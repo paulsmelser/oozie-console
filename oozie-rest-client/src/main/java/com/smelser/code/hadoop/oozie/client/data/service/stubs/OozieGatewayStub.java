@@ -25,25 +25,30 @@ public class OozieGatewayStub implements OozieGateway {
     }
 
     public GetRunningCoordinatorsResponse getRunningCoordinators() {
-        Collection<CoordinatorDto> list = null;
+        GetRunningCoordinatorsResponse list = null;
         try {
-            Resource resource = new Resource("CoordinatorList.json");
+            Resource resource = new Resource("coordinatorList.json");
             Gson gson = new Gson();
 
-            list = gson.fromJson(resource.getAsString(), new ArrayList<CoordinatorDto>().getClass());
+            list = gson.fromJson(resource.getAsString(), GetRunningCoordinatorsResponse.class);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        GetRunningCoordinatorsResponse response = new GetRunningCoordinatorsResponse();
-        response.setCoordinatorjobs(list);
-        return response;
+        return list;
     }
 
     public CoordinatorDto getCoordinator(String id, int len) {
-        CoordinatorDto dto = new CoordinatorDto();
-        dto.setAcl("test");
-        return dto;
+        CoordinatorDto result = null;
+        try {
+            Resource resource = new Resource("coordinator.json");
+            Gson gson = new Gson();
+
+            result = gson.fromJson(resource.getAsString(), CoordinatorDto.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public WorkflowDto getWorkflow(String id, int len) {
@@ -53,12 +58,10 @@ public class OozieGatewayStub implements OozieGateway {
 	    Gson gson = new Gson();
 
 	    result = gson.fromJson(file.getAsString(), WorkflowDto.class);
-	} catch (JsonSyntaxException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
+	} catch (JsonSyntaxException | IOException e) {
 	    e.printStackTrace();
 	}
-	return result;
+        return result;
     }
 
     public GetKilledOrFailedWorkflowsResponse GetKilledOrFailedWorkflows(int len) {

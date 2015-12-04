@@ -1,6 +1,6 @@
 package com.smelser.code.hadoop.oozie.client;
 
-import com.smelser.code.hadoop.oozie.client.data.service.SimpleOozieClient;
+import com.smelser.code.hadoop.oozie.client.data.service.DefaultOozieClient;
 
 public class HadoopAccount {
 	
@@ -15,8 +15,8 @@ public class HadoopAccount {
 		this.clusterUri = clusterUri;
 	}
 	
-	public SimpleOozieClient getOozieClient(){
-		return new SimpleOozieClient(this);
+	public DefaultOozieClient getOozieClient(){
+		return new DefaultOozieClient(this);
 	}
 	
 	public String getUsername() {
