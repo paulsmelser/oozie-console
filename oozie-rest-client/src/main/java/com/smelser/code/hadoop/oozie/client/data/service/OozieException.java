@@ -5,7 +5,7 @@ package com.smelser.code.hadoop.oozie.client.data.service;
  *
  * @author psmelser
  */
-public class OozieException extends Exception{
+public class    OozieException extends Exception{
     public OozieException(Throwable throwable){
         super(throwable);
     }

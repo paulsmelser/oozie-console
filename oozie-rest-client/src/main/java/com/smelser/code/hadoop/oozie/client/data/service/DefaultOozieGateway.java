@@ -38,7 +38,7 @@ public class DefaultOozieGateway implements OozieGateway {
 
     private final String JOB_PATH = "oozie/v2/job/";
     private final String JOBS_PATH = "/oozie/v2/jobs";
-    private WebResource service;
+    private WebResource resource;
 
     public DefaultOozieGateway(HadoopAccount hadoopAccount) {
 		ClientConfig config = new DefaultClientConfig(GensonJsonConverter.class);
@@ -47,27 +47,27 @@ public class DefaultOozieGateway implements OozieGateway {
 
 		Client client = Client.create(config);
 		client.addFilter(authFilter);
-		service = client.resource(UriBuilder.fromUri(hadoopAccount.getClusterUri()).build());
+		resource = client.resource(UriBuilder.fromUri(hadoopAccount.getClusterUri()).build());
     }
 
     public GetWorkflowListResponse getWorkflows() {
-        return service.path(JOBS_PATH).queryParam("jobtype", "wf").accept(MediaType.APPLICATION_JSON)
+        return resource.path(JOBS_PATH).queryParam("jobtype", "wf").accept(MediaType.APPLICATION_JSON)
             .get(GetWorkflowListResponse.class);
     }
 
     public GetRunningCoordinatorsResponse getRunningCoordinators() {
-        return service.path(JOBS_PATH).queryParam("jobtype", "coord")
+        return resource.path(JOBS_PATH).queryParam("jobtype", "coord")
             .queryParam("filter", "status%3DRUNNING").accept(MediaType.APPLICATION_JSON)
             .get(GetRunningCoordinatorsResponse.class);
     }
 
     public CoordinatorDto getCoordinator(String id, int len) {
-        CoordinatorDto result = service.path(String.format("/oozie/v2/job/%s", id))
+        CoordinatorDto result = resource.path(String.format("/oozie/v2/job/%s", id))
             .queryParam("len", Integer.toString(len)).accept(MediaType.APPLICATION_JSON)
             .get(CoordinatorDto.class);
 
         if (Integer.parseInt(result.getTotal()) > len) {
-            result = service.path(String.format("/oozie/v2/job/%s", id))
+            result = resource.path(String.format("/oozie/v2/job/%s", id))
                     .queryParam("len", Integer.toString(len))
                     .queryParam("offset", Integer.toString(Integer.parseInt(result.getTotal()) - len + 1))
                     .accept(MediaType.APPLICATION_JSON)
@@ -84,16 +84,16 @@ public class DefaultOozieGateway implements OozieGateway {
     }
 
     public WorkflowDto getWorkflow(String id, int len) {
-        return service.path(String.format("/oozie/v2/job/%s", id)).queryParam("len", Integer.toString(len))
+        return resource.path(String.format("/oozie/v2/job/%s", id)).queryParam("len", Integer.toString(len))
             .accept(MediaType.APPLICATION_JSON).get(WorkflowDto.class);
     }
 
     public GetKilledOrFailedWorkflowsResponse GetKilledOrFailedWorkflows(int len) {
         GetKilledOrFailedWorkflowsResponse response = new GetKilledOrFailedWorkflowsResponse();
-        response.setWorkflows(service.path(JOBS_PATH).queryParam("jobtype", "wf")
-            .queryParam("filter", "status%3DKILLED;status%3DFAILED")
-            .queryParam("len", Integer.toString(len)).accept(MediaType.APPLICATION_JSON)
-            .get(GetWorkflowListResponse.class));
+        response.setWorkflows(resource.path(JOBS_PATH).queryParam("jobtype", "wf")
+                .queryParam("filter", "status%3DKILLED;status%3DFAILED")
+                .queryParam("len", Integer.toString(len)).accept(MediaType.APPLICATION_JSON)
+                .get(GetWorkflowListResponse.class));
         return response;
     }
 
@@ -113,7 +113,7 @@ public class DefaultOozieGateway implements OozieGateway {
         }
         String body = ConfigurationSerializer.toXml(workflow.getConf());
 
-        service.path(JOB_PATH + id).queryParam("action", "rerun")
+        resource.path(JOB_PATH + id).queryParam("action", "rerun")
             .type(MediaType.APPLICATION_XML).put(ClientResponse.class, body);
     }
 
@@ -126,7 +126,7 @@ public class DefaultOozieGateway implements OozieGateway {
 
         String body = ConfigurationSerializer.toXml(workflow.getConf());
 
-        service.path(JOB_PATH + id).queryParam("action", "rerun").type(MediaType.APPLICATION_XML)
+        resource.path(JOB_PATH + id).queryParam("action", "rerun").type(MediaType.APPLICATION_XML)
                 .put(ClientResponse.class, body);
     }
 
@@ -134,24 +134,24 @@ public class DefaultOozieGateway implements OozieGateway {
         config.remove("oozie.coord.application.path");
         config.add("oozie.wf.rerun.skip.nodes", skipNodes);
         String body = ConfigurationSerializer.toXml(config);
-        service.path(JOB_PATH + id).queryParam("action", "rerun").type(MediaType.APPLICATION_XML)
+        resource.path(JOB_PATH + id).queryParam("action", "rerun").type(MediaType.APPLICATION_XML)
                 .put(ClientResponse.class, body);
     }
 
     public void kill(String id) {
-	    service.path("oozie/v1/job/" + id).queryParam("action", "kill").put("");
+	    resource.path("oozie/v1/job/" + id).queryParam("action", "kill").put("");
     }
 
     public void start(String id) {
-	    service.path("oozie/v1/job/" + id).queryParam("action", "start").put("");
+	    resource.path("oozie/v1/job/" + id).queryParam("action", "start").put("");
     }
 
     public void suspend(String id) {
-	    service.path("oozie/v1/job/" + id).queryParam("action", "suspend").put(ClientResponse.class);
+	    resource.path("oozie/v1/job/" + id).queryParam("action", "suspend").put(ClientResponse.class);
     }
 
     public void resume(String id) {
-	service.path("oozie/v2/job" + id).queryParam("action", "resume").put("");
+	resource.path("oozie/v2/job" + id).queryParam("action", "resume").put("");
     }
 
     public void submit(Map<String, String> conf) {
@@ -164,10 +164,10 @@ public class DefaultOozieGateway implements OozieGateway {
 
         configuration.setProperties(props);
         String body = ConfigurationSerializer.toXml(configuration);
-        service.path("oozie/v2/jobs").type(MediaType.APPLICATION_XML).post(ClientResponse.class, body);
+        resource.path("oozie/v2/jobs").type(MediaType.APPLICATION_XML).post(ClientResponse.class, body);
     }
 
     public GetStatusResponse getStatus() {
-	    return service.path("oozie/v2/admin/status").get(GetStatusResponse.class);
+	    return resource.path("oozie/v2/admin/status").get(GetStatusResponse.class);
     }
 }
