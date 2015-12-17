@@ -1,0 +1,9 @@
+image: java:8
+
+stages:
+  - build
+
+job1:
+  stage: build
+  script:
+    - gradle build
