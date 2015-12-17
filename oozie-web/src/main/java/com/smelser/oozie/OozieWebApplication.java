@@ -27,7 +27,6 @@ public class OozieWebApplication {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
-        //NB, selecting HTML5 as the template mode.
         resolver.setTemplateMode("HTML5");
         resolver.setCacheable(false);
 

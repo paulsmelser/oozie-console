@@ -82,7 +82,7 @@ bootRun {
 }
 
 subprojects {
-    group = 'com.silanis.esl'
+    group = 'com.smelser.oozie'
     version = '1.0.0'
 }
 
