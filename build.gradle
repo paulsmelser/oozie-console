@@ -66,6 +66,7 @@ allprojects {
         options.incremental = true
     }
 }
+
 bootRun {
     main = 'com.smelser.oozie.Application'
     systemProperties = [
