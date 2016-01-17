@@ -61,7 +61,7 @@ allprojects {
     dependencies{
         compile("com.thoughtworks.xstream:xstream:1.4.7")
         compile("com.sun.jersey:jersey-client:1.18.3")
-        compile("com.smelser.code:SimpleMapper:0.0.2-RELEASE")
+        compile("com.smelser.code:SimpleMapper:0.0.1")
         compile("com.owlike:genson:0.99")
         compile("com.google.code.gson:gson:2.3.1")
         compile("org.springframework.boot:spring-boot-starter-thymeleaf")
