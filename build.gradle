@@ -1,10 +1,12 @@
 buildscript {
     ext {
-        springBootVersion = '1.1.6.RELEASE'
+        springBootVersion = '1.2.6.RELEASE'
     }
     repositories {
         mavenCentral()
-        maven{ url 'https://github.com/paulsmelser/maven-repo.git/raw/master/'  }
+        maven {
+            url "https://github.com/paulsmelser/maven-repo.git/raw/master/"
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -25,11 +27,14 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    maven{ url 'https://github.com/paulsmelser/maven-repo.git/raw/master/'  }
+    maven{
+        url "https://github.com/paulsmelser/maven-repo.git/raw/master/"
+    }
 }
 loadConfiguration()
 
 mainClassName = "com.smelser.oozie.Application"
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -48,7 +53,9 @@ allprojects {
 
     repositories {
         mavenCentral()
-        mavenLocal()
+        maven{
+            url "https://github.com/paulsmelser/maven-repo.git/raw/master/"
+        }
     }
 
     dependencies{
