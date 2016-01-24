@@ -1,13 +1,13 @@
 package com.smelser.oozie;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Created by paul.smelser@gmail.com on 03/10/15.
  * @author psmelser
  */
-@SpringApplicationConfiguration
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {

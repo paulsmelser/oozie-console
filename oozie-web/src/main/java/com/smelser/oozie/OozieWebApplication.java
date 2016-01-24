@@ -1,10 +1,8 @@
 package com.smelser.oozie;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
@@ -12,9 +10,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
  * Created by paul.smelser@gmail.com on 03/10/15.
  * @author psmelser
  */
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
+@SpringBootApplication
 @PropertySource("classpath:oozie-web.properties")
 public class OozieWebApplication {
 
