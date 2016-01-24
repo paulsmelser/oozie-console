@@ -3,6 +3,7 @@ buildscript {
         springBootVersion = '1.2.6.RELEASE'
     }
     repositories {
+        jcenter()
         mavenCentral()
         maven {
             url "https://github.com/paulsmelser/maven-repo/raw/master/"
@@ -10,16 +11,17 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('org.hidetake:gradle-ssh-plugin:1.1.4')
     }
 }
 
+apply plugin: 'org.hidetake.ssh'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
     baseName = 'oozie-console'
-    version = '1.0.0-SNAPSHOT'
 }
 
 //sourceCompatibility = 1.8
@@ -31,7 +33,6 @@ repositories {
         url "https://github.com/paulsmelser/maven-repo/raw/master/"
     }
 }
-loadConfiguration()
 
 mainClassName = "com.smelser.oozie.Application"
 
@@ -78,7 +79,7 @@ allprojects {
 bootRun {
     main = 'com.smelser.oozie.Application'
     systemProperties = [
-            'spring.profiles.active': "$config.spring.profiles.active"
+            'spring.profiles.active': "dev"
     ]
 }
 
@@ -87,16 +88,23 @@ subprojects {
     version = '1.0.0'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+remotes {
+    digitalocean {
+        host = '45.55.154.254'
+        user = 'root'
+        identity = file("/Users/psmelser/.ssh/oozie.pub")
+    }
 }
 
-def loadConfiguration() {
-    def environment = hasProperty('env') ? env : 'dev'
-    System.setProperty('environment', environment)
-    println "Environment is set to $environment"
+task deploy(dependsOn: jar) << {
+    ssh.run {
+        session(remotes.digitalocean) {
+            put from: jar.archivePath, into: '/root/oozie'
+//            execute "sudo java -jar /root/oozie/oozie-console-${project.version}"
+        }
+    }
+}
 
-    def configFile = file('config.groovy')
-    def config = new ConfigSlurper(environment).parse(configFile.toURL())
-    extensions.add('config', config)
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
