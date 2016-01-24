@@ -83,6 +83,10 @@ bootRun {
     ]
 }
 
+springBoot{
+    executable = true
+}
+
 subprojects {
     group = 'com.smelser.oozie'
     version = '1.0.0'
