@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.2.6.RELEASE'
+        springBootVersion = '1.3.2.RELEASE'
     }
     repositories {
         jcenter()
@@ -24,8 +24,9 @@ jar {
     baseName = 'oozie-console'
 }
 
-//sourceCompatibility = 1.8
-//targetCompatibility = 1.8
+springBoot {
+    executable = true
+}
 
 repositories {
     mavenCentral()
@@ -34,7 +35,6 @@ repositories {
     }
 }
 
-mainClassName = "com.smelser.oozie.Application"
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
