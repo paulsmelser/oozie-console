@@ -1,6 +1,16 @@
 apply plugin: 'spring-boot'
+apply plugin: 'maven'
+
+group = 'com.smelser'
+version = '1.0.0'
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.webjars:bootstrap:3.2.0")
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "file:///Users/paulsmelser/workspace/maven-repo/")
+    }
 }
