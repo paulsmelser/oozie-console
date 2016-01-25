@@ -239,4 +239,8 @@ public class Coordinator {
     public void setActions(Collection<CoordinatorAction> actions) {
 	this.actions = actions;
     }
+
+    public String print(){
+        return String.format("%10s |%10s |%10s |%10s |", getCoordJobId(), getCoordJobName(), getStartTime(), getEndTime());
+    }
 }

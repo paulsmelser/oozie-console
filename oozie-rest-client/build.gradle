@@ -2,7 +2,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'maven'
 
 group = 'com.smelser'
-version = '1.0.0'
+version = '1.0.0.1'
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-aop")
@@ -11,6 +11,6 @@ dependencies {
 
 uploadArchives {
     repositories.mavenDeployer {
-        repository(url: "file:///Users/paulsmelser/workspace/maven-repo/")
+        repository(url: "file:///${System.properties['user.home']}/workspace/maven-repo/")
     }
 }
