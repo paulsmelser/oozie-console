@@ -64,7 +64,7 @@ allprojects {
         testCompile("org.springframework.boot:spring-boot-starter-test")
         compile("com.thoughtworks.xstream:xstream:1.4.7")
         compile("com.sun.jersey:jersey-client:1.18.3")
-        compile("com.smelser:SimpleMapper:0.0.1")
+        compile("com.smelser:SimpleMapper:1.0.3")
         compile("com.owlike:genson:0.99")
         compile("com.google.code.gson:gson:2.3.1")
         testCompile("junit:junit")
