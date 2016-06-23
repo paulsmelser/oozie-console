@@ -8,15 +8,22 @@
   margin-left: 0px !important;
 }
 .title-bar {
-	min-height: 210px;	
+	min-height: 170px;
+	padding-top: 18px !important;
 	position: relative;
+	line-height: 40px;
+}
+
+.nav-front{
+	opacity: .97;
+	z-index: 1;
 }
 .footer{
 position: fixed;
 bottom: 0px;
-height: 100px;
+height: 70px;
 background-color: #ffffff;
-  opacity: .95;
+  opacity: .97;
 margin-left: -10px;
 right: 0px;
 /* left: 280px; */
@@ -24,7 +31,7 @@ left: 0px;
 z-index: 1;
 padding-left: 0px;
 line-height: 32px;
-padding-top: 30px;
+padding-top: 10px;
 padding-right: 35px;
 }
 
@@ -32,9 +39,9 @@ padding-right: 35px;
 	min-width: 100px;
 }
 .maincontent {
-	margin-bottom: 100px;
+	margin-bottom: 60px;
 	position: static;
-	padding: 35px 65px;
+	padding: 180px 25px 0px 25px;
 }
 
 .main-title{
@@ -129,7 +136,7 @@ label{
 
 .title-table{
 	display: table;
-	height: 100px;
+	height: 70px;
 	overflow: hidden;
 }
 
