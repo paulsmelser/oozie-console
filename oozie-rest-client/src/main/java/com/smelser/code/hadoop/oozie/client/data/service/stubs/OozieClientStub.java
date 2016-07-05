@@ -13,7 +13,7 @@ import java.util.*;
 
 import static java.util.Collections.*;
 
-@Profile({SpringProfiles.DEVELOPMENT, SpringProfiles.DEVELOPMENT})
+@Profile({SpringProfiles.DEVELOPMENT})
 public class OozieClientStub implements OozieClient {
 
     private OozieGatewayStub gateway = new OozieGatewayStub();

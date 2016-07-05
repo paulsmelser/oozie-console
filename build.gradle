@@ -19,6 +19,8 @@ plugins {
     id 'idea'
     id 'org.hidetake.ssh' version '1.1.4'
     id 'nebula.ospackage' version '3.4.0'
+    id "com.moowork.node" version "0.12"
+    id "com.moowork.gulp" version "0.12"
 }
 
 apply plugin: 'spring-boot'
@@ -124,3 +126,41 @@ task deploy << {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+def generatedWebResources = "${buildDir}/generated-web-resources"
+sourceSets {
+    main {
+        output.dir(generatedWebResources, builtBy: 'gulp_build')
+    }
+}
+
+// configure gradle-node-plugin
+node {
+    version = '6.2.0'
+    npmVersion = '3.9.2'
+    download = true
+    workDir = file("${project.projectDir}/oozie-web/src/main/web/node")
+    nodeModulesDir = file("${project.projectDir}/oozie-web/src/main/web")
+}
+
+// configure gradle-grunt-plugin
+gulp {
+    workDir = file("${project.projectDir}/oozie-web/src/main/web");
+    colors = true
+    bufferOutput = false
+}
+
+task npmClean(type: Delete) {
+    final def webDir = "${rootDir}/oozie-web/src/main/web"
+    delete "${webDir}/node"
+    delete "${webDir}/node_modules"
+    delete "${webDir}/typings"
+}
+
+compileJava.dependsOn(processResources);
+// build front-end before making jar
+processResources.dependsOn(npmInstall)
+npmInstall.finalizedBy(gulp_build)
+
+// run npmClean before clean
+clean.dependsOn(npmClean)

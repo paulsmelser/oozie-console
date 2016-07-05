@@ -1,0 +1,27 @@
+
+<div class="wrapper scroll-y">
+    <h1>Oozie Dashboard</h1>
+    <div class="table-responsive">
+        <div class="container-fluid table-view">
+            <h3>Running Coordinators</h3>
+
+            <table class="table table-striped">
+                <thead>
+                <th>Coord Job Name</th>
+                <th>Id</th>
+                <th>Status</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let coord of coords" (click)="details(coord)" class="clickable">
+                    <td>{{coord.coordJobName}}</td>
+                    <td>{{coord.coordJobId}}</td>
+                    <td>{{coord.status}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="btn btn-primary pull-right" (click)="refresh()">Refresh</button>
+    </div>
+</div>

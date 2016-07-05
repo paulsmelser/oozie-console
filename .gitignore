@@ -3,3 +3,6 @@
 **/build/
 *.iml
 .vagrant
+**/node/
+**/node_modules/
+**/typings/

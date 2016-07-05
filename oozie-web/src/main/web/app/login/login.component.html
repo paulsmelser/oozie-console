@@ -1,0 +1,33 @@
+<div class="menu pane-col scroll-y">
+    <div class="panel">
+        <div class="panel-heading spotify">
+            <div id="userLogin" [hidden]="!loggedIn">
+                <i class="fa fa-check-circle ok-1"></i>
+
+                <div class="pull-right username"> User: <span class="ng-binding">{{user}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="login(userInput)">
+                <div class="form-group">
+                    <Label>Credentials</Label>
+                    <input type="text" class="form-control" placeholder="Cluster URI"
+                           ng-model="userInput.clusterUri"/><br/>
+                    <input type="text" class="form-control" placeholder="Hadoop User"
+                           ng-model="userInput.username"/><br/>
+                    <input type="password" class="form-control" placeholder="Password"
+                           ng-model="userInput.password"/><br/>
+                    <input type="checkbox" id="stayLoggedIn" ng-model="userInput.stayLoggedIn"/><label
+                        for="stayLoggedIn" class="small">Stay logged in</label>
+                    <label><input type="submit" class="btn btn-primary pull-right" value="Log In"/></label>
+                </div>
+            </form>
+
+        </div>
+        <div class="list-group">
+            <a href="#coordinators" class="list-group-item">Running Coordinators</a>
+            <a href="#workflows" class="list-group-item">Recent Workflows</a>
+        </div>
+    </div>
+</div>
