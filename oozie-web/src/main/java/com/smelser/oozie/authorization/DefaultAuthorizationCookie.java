@@ -1,4 +1,4 @@
-package com.smelser.oozie.controller;
+package com.smelser.oozie.authorization;
 
 import com.smelser.oozie.utilities.EncryptUtils;
 import org.springframework.stereotype.Component;
@@ -14,6 +14,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.InvalidParameterSpecException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by paul.smelser@gmail.com on 06/10/15.
@@ -21,7 +23,7 @@ import java.security.spec.InvalidParameterSpecException;
  * @author psmelser
  */
 @Component
-public class DefaultAuthCookieService implements AuthCookieService{
+public class DefaultAuthorizationCookie implements AuthorizationCookie {
 
     @Override
     public Cookie create(String clusterUri, String username, String password) {
@@ -32,6 +34,17 @@ public class DefaultAuthCookieService implements AuthCookieService{
         cookie.setPath("/");
         cookie.setSecure(new Boolean(false));
         return cookie;
+    }
+
+    public UserLogin getAuthFromCookie(String cookie) {
+        String pattern = "OC.(\\d{1}).(\\d{1}).[A-Z, a-z, 0-9, =]*";
+        Pattern r = Pattern.compile(pattern);
+        Matcher matcher = r.matcher(cookie);
+        if (matcher.find()) {
+            String[] auth = EncryptUtils.base64decode(matcher.group().split("\\.")[3]).split("\\|");
+            return new UserLogin(auth[0], auth[1], auth[2]);
+        }
+        return new UserLogin();
     }
 
     public static String decryptCookie(Cookie cookie, String salt) throws InvalidKeyException,

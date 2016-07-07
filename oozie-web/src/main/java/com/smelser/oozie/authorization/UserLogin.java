@@ -1,4 +1,4 @@
-package com.smelser.oozie.controller;
+package com.smelser.oozie.authorization;
 
 public class UserLogin {
 

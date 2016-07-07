@@ -4,6 +4,7 @@ import {Component} from "@angular/core";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router, Routes} from '@angular/router';
 import { CoordinatorListComponent } from "./coordinator-list/coordinator-list.component";
+import { CoordinatorService } from "./coordinator/coordinator.service";
 import {LoginComponent} from "./login/login.component";
 
 
