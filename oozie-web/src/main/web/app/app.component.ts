@@ -12,7 +12,7 @@ import {LoginComponent} from "./login/login.component";
     selector: 'oozie-console',
     templateUrl: '/app/app.html',
     directives: [ROUTER_DIRECTIVES, LoginComponent],
-    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS]
+    providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, CoordinatorService]
 })
 @Routes([
     {path: '/', component: CoordinatorListComponent }
