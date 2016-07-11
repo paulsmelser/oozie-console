@@ -37,8 +37,15 @@ gulp.task('libcopy', function() {
               './node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js',
               './node_modules/jasmine-core/lib/jasmine-core/boot.js'])
         .pipe(gulp.dest(staticDir + 'js/lib'));
+
     gulp.src(['./node_modules/jasmine-core/lib/jasmine-core/jasmine.css'])
         .pipe(gulp.dest(staticDir + 'css/lib'));
+
+    gulp.src(['./node_modules/angular2-materialize/**/*'])
+        .pipe(gulp.dest(staticDir + "js/lib/angular2-materialize"));
+    gulp.src(['./node_modules/materialize-css/dist/css/materialize.min.css'])
+        .pipe(gulp.dest(staticDir + "css/lib"));
+
 
     // copy bootstrap dependencies
     gulp.src(['./node_modules/jquery/dist/jquery.min.js',

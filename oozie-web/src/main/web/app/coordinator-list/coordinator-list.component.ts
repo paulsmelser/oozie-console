@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from "@angular/router";
+import { Component } from "@angular/core";
+import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from "@angular/router";
 import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Rx";
 import { CoordinatorService } from "../coordinator/coordinator.service";

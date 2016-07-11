@@ -7,7 +7,8 @@
     'rxjs':                       'app/js/lib/rxjs',
     'angular2-in-memory-web-api': 'app/js/lib/angular2-in-memory-web-api',
     '@angular':                   'app/js/lib/@angular',
-    'moment':                     'app/js/lib/moment.min.js'
+    'moment':                     'app/js/lib/moment.min.js',
+    'angular2-materialize':       'app/js/lib/angular2-materialize/dist'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -15,7 +16,8 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'symbol-observable':          { main: 'index.js', defaultExtension: 'js'},
     'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' }
+    'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    "angular2-materialize":       { main: 'materialize-directive', defaultExtension: "js"}
   };
 
   var packageNames = [

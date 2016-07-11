@@ -9,18 +9,30 @@
             </div>
         </div>
         <div class="panel-body">
-            <form ng-submit="login(userInput)">
-                <div class="form-group">
-                    <Label>Credentials</Label>
-                    <input type="text" class="form-control" placeholder="Cluster URI"
-                           ng-model="userInput.clusterUri"/><br/>
-                    <input type="text" class="form-control" placeholder="Hadoop User"
-                           ng-model="userInput.username"/><br/>
-                    <input type="password" class="form-control" placeholder="Password"
-                           ng-model="userInput.password"/><br/>
-                    <input type="checkbox" id="stayLoggedIn" ng-model="userInput.stayLoggedIn"/><label
-                        for="stayLoggedIn" class="small">Stay logged in</label>
-                    <label><input type="submit" class="btn btn-primary pull-right" value="Log In"/></label>
+            <!--<form ng-submit="login(userInput)">-->
+                <!--<div class="form-group">-->
+                    <!--<Label>Credentials</Label>-->
+                    <!--<input type="text" class="form-control" placeholder="Cluster URI"-->
+                           <!--ng-model="userInput.clusterUri"/><br/>-->
+                    <!--<input type="text" class="form-control" placeholder="Hadoop User"-->
+                           <!--ng-model="userInput.username"/><br/>-->
+                    <!--<input type="password" class="form-control" placeholder="Password"-->
+                           <!--ng-model="userInput.password"/><br/>-->
+                    <!--<input type="checkbox" id="stayLoggedIn" ng-model="userInput.stayLoggedIn"/><label-->
+                        <!--for="stayLoggedIn" class="small">Stay logged in</label>-->
+                    <!--<label><input type="submit" class="btn btn-primary pull-right" value="Log In"/></label>-->
+                    <!--<div class="input-field col s6">-->
+                        <!--<input class="validate" id="last_name" type="text">-->
+                        <!--<label for="last_name" class="">Last Name</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+            <form class="col 12">
+                <div class="row">
+                    <div class="input-field col 12">
+                        <input class="validate" type="text" id="clusterUri"/>
+                        <label for="clusterUri" >Cluster Uri</label>
+                    </div>
                 </div>
             </form>
 
