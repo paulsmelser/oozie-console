@@ -1,5 +1,8 @@
 package com.smelser.oozie;
 
+import com.smelser.code.hadoop.oozie.SpringProfiles;
+import com.smelser.code.hadoop.oozie.client.data.service.OozieClient;
+import com.smelser.code.hadoop.oozie.client.data.service.stubs.OozieClientStub;
 import com.smelser.code.hadoop.oozie.client.dto.CoordinatorActionDto;
 import com.smelser.code.hadoop.oozie.client.dto.CoordinatorDto;
 import com.smelser.code.hadoop.oozie.client.dto.WorkflowActionDto;
@@ -10,14 +13,14 @@ import com.smelser.code.hadoop.oozie.client.entities.Coordinator;
 import com.smelser.code.hadoop.oozie.client.entities.CoordinatorAction;
 import com.smelser.code.hadoop.oozie.client.entities.Workflow;
 import com.smelser.code.hadoop.oozie.client.entities.WorkflowAction;
-import com.smelser.oozie.authorization.CookieAuthorizationFilter;
 import com.smelser.oozie.authorization.AuthorizationCookie;
+import com.smelser.oozie.authorization.CookieAuthorizationFilter;
 import com.smelser.oozie.data.OozieClientFactory;
 import com.smelser.oozie.utilities.ServiceLocator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Profile;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import simplemapper.Mapper;
 
@@ -28,7 +31,6 @@ import javax.servlet.Filter;
  * @author psmelser
  */
 @SpringBootApplication
-@PropertySource("classpath:oozie-web.properties")
 public class OozieWebApplication {
 
     public static void main(String [] args){
@@ -59,4 +61,11 @@ public class OozieWebApplication {
                                             ServiceLocator serviceLocator){
         return new CookieAuthorizationFilter(authorizationCookie, factory, serviceLocator);
     }
+
+    @Bean
+    @Profile(SpringProfiles.DEVELOPMENT)
+    public OozieClient oozieClient(){
+        return new OozieClientStub();
+    }
+
 }

@@ -62,17 +62,22 @@ allprojects {
     }
 
     dependencies{
-        compile("org.springframework.boot:spring-boot-starter-web")
-        compile("org.springframework.boot:spring-boot-starter-actuator")
-        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-        testCompile("org.springframework.boot:spring-boot-starter-test")
-        compile("com.thoughtworks.xstream:xstream:1.4.7")
-        compile("com.sun.jersey:jersey-client:1.18.3")
-        compile("com.smelser:simple-mapper:1.0.3")
-        compile("com.owlike:genson:0.99")
-        compile("com.google.code.gson:gson:2.3.1")
-        testCompile("junit:junit")
-        testCompile("org.mockito:mockito-core")
+        compile(
+                [group:'org.springframework.boot',  name:'spring-boot-starter-web'],
+                [group:'org.springframework.boot',  name:'spring-boot-starter-actuator'],
+                [group:'org.springframework.boot',  name:'spring-boot-starter-thymeleaf'],
+                [group:'com.thoughtworks.xstream',  name:'xstream',                         version: '1.4.7'],
+                [group:'com.sun.jersey',            name:'jersey-client',                   version: '1.18.3'],
+                [group:'com.smelser',               name:'simple-mapper',                   version: '1.0.3'],
+                [group:'com.owlike',                name:'genson',                          version: '0.99'],
+                [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1']
+        )
+
+        testCompile(
+                [group: 'org.springframework.boot', name:'spring-boot-starter-test'],
+                [group: 'junit',                    name:'junit'],
+                [group: 'org.mockito',              name:'mockito-core']
+        )
     }
 
     tasks.withType(JavaCompile) {

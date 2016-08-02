@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 @Scope(value = "session")
 public class LoginResource {
 
-
     private final AuthorizationCookie authorizationCookie;
     private final ServiceLocator serviceLocator;
     private final OozieClientFactory factory;

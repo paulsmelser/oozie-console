@@ -1,8 +1,6 @@
 package com.smelser.oozie.utilities;
 
 import com.smelser.code.hadoop.oozie.client.data.service.OozieClient;
-import com.smelser.oozie.data.OozieClientFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,8 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceLocator {
 
-    @Autowired
-    private OozieClientFactory factory;
+    public ServiceLocator(OozieClient client) {
+        this.client = client;
+    }
+
     private OozieClient client;
 
     public OozieClient getOozieClient(){

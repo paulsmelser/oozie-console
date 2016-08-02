@@ -12,5 +12,4 @@ Vagrant.configure(2) do |config|
     vb.gui = false
     vb.memory = "4096"
   end
-
 end
