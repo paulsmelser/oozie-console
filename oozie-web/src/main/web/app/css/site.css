@@ -43,6 +43,11 @@ padding-right: 35px;
 
 .btn{
 	min-width: 100px;
+	background-color: #2490E5 !important;
+}
+
+.btn:hover{
+	background-color: #2490E5 !important;
 }
 .maincontent {
 	margin-bottom: 60px;
@@ -65,8 +70,6 @@ padding-right: 35px;
 }
 
 body {
-  background: #111;
-  color:#333;
   font-family: "Segoe UI", "Segoe UI Light", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
   text-rendering:optimizeLegibility
 }
@@ -126,7 +129,6 @@ body {
 
 label{
   font-weight: normal;
-  font-size: 19px;
   color: #ddd;
 }
 

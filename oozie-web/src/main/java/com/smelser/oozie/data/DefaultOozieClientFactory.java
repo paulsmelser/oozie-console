@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-@Profile(SpringProfiles.DEVELOPMENT)
+@Profile(SpringProfiles.NOT_DEVELOPMENT)
 public class DefaultOozieClientFactory implements OozieClientFactory{
 
     public OozieClient create(String clusterUri, String username, String password){

@@ -2,6 +2,7 @@ package com.smelser.oozie.authorization;
 
 import com.smelser.oozie.data.OozieClientFactory;
 import com.smelser.oozie.utilities.ServiceLocator;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

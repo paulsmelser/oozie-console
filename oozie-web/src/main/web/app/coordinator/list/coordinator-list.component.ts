@@ -2,11 +2,11 @@ import { Component } from "@angular/core";
 import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES } from "@angular/router";
 import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Rx";
-import { CoordinatorService } from "../coordinator/coordinator.service";
+import { CoordinatorService } from "../coordinator.service";
 import 'rxjs/add/operator/map';
 
 @Component({
-    templateUrl: '/app/coordinator-list/coordinator-list.component.html',
+    templateUrl: '/app/coordinator/list/coordinator-list.component.html',
     directives: [ROUTER_DIRECTIVES],
 })
 export class CoordinatorListComponent{

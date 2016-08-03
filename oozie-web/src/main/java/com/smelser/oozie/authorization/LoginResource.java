@@ -36,10 +36,10 @@ public class LoginResource {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public void login(@RequestParam(value = "clusterUri", required = true) String clusterUri,
-                      @RequestParam(value = "username", required = true) String username,
-                      @RequestParam(value = "password", required = true) String password,
-                      @RequestParam(value = "stayLoggedIn", required = true) boolean stayLoggedIn,
+    public void login(@RequestParam(value = "clusterUri") String clusterUri,
+                      @RequestParam(value = "username") String username,
+                      @RequestParam(value = "password") String password,
+                      @RequestParam(value = "stayLoggedIn") boolean stayLoggedIn,
                       HttpServletResponse response) {
         if (stayLoggedIn) {
             Cookie cookie = authorizationCookie.create(clusterUri, username, password);
@@ -47,5 +47,18 @@ public class LoginResource {
         }
         serviceLocator.register(factory.create(clusterUri, username, password));
         serviceLocator.getOozieClient().getStatus();
+    }
+
+    @RequestMapping(value = "login/demo", method = RequestMethod.GET)
+    public void demoLogin(){
+        System.setProperty("environment", "1");
+        serviceLocator.register(factory.create("", "", ""));
+        serviceLocator.getOozieClient().getStatus();
+    }
+
+    @RequestMapping(value="login/demo/cancel", method = RequestMethod.GET)
+    public void cancelDemo(){
+        System.setProperty("environment", "0");
+        serviceLocator.removeOozieClient();
     }
 }
