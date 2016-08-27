@@ -24,7 +24,6 @@ plugins {
 
 apply plugin: 'spring-boot'
 
-
 jar {
     baseName = 'oozie-console'
 }
@@ -34,16 +33,13 @@ springBoot {
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
     maven{
         url "https://github.com/paulsmelser/maven-repo/raw/master/"
     }
 }
 
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile project(":oozie-rest-client")
     compile project(":oozie-web")
     compile project(":oozie-application")
@@ -51,13 +47,20 @@ dependencies {
 
 allprojects {
     apply plugin: 'java'
+    apply plugin: 'spring-boot'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     repositories {
-        mavenCentral()
+        jcenter()
         maven{
                 url "https://github.com/paulsmelser/maven-repo/raw/master/"
+        }
+    }
+
+    dependencyManagement{
+        dependencies{
+            dependency group:'com.sun.jersey',  name:'jersey-client',   version: '1.18.3'
         }
     }
 
@@ -66,8 +69,6 @@ allprojects {
                 [group:'org.springframework.boot',  name:'spring-boot-starter-web'],
                 [group:'org.springframework.boot',  name:'spring-boot-starter-actuator'],
                 [group:'org.springframework.boot',  name:'spring-boot-starter-thymeleaf'],
-                [group:'com.thoughtworks.xstream',  name:'xstream',                         version: '1.4.7'],
-                [group:'com.sun.jersey',            name:'jersey-client',                   version: '1.18.3'],
                 [group:'com.smelser',               name:'simple-mapper',                   version: '1.0.3'],
                 [group:'com.owlike',                name:'genson',                          version: '0.99'],
                 [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1']
@@ -91,8 +92,6 @@ bootRun {
             'spring.profiles.active': "dev"
     ]
 }
-
-
 
 subprojects {
     group = 'com.smelser.oozie'
@@ -157,3 +156,5 @@ npmInstall.finalizedBy(gulp_build)
 
 // run npmClean before clean
 clean.dependsOn(npmClean)
+
+

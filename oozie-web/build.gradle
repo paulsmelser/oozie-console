@@ -1,8 +1,8 @@
-apply plugin: 'spring-boot'
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-aop")
-    compile("org.webjars:bootstrap:3.2.0")
-    compile project(":oozie-rest-client")
+    compile(
+            [group: "org.springframework.boot", name: "spring-boot-starter-web"],
+            [group: "org.springframework.boot", name: "spring-boot-starter-aop"],
+            [group: "org.webjars", name: "bootstrap", version: "3.2.0"],
+            project(":oozie-rest-client")
+    )
 }

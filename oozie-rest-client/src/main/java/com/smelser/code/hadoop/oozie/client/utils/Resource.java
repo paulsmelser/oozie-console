@@ -12,15 +12,22 @@ public class Resource {
 	private Scanner scan;
 	
 	public Resource(String filePath) throws IOException{
-		URL f = Resource.class.getClassLoader().getResource(filePath);
+        URL f = Resource.class.getClassLoader().getResource(addLeadingSlash(filePath));
 		reader = new BufferedReader(
 		        new InputStreamReader(f.openStream()));
 		scan = new Scanner(reader);
     	scan.useDelimiter("\\r\\n");
 	}
 
-	public Resource(String filePath, String delimiter) throws IOException{
-		URL f = Resource.class.getClassLoader().getResource(filePath);
+    private String addLeadingSlash(String filePath) {
+        if (filePath.startsWith("/")){
+            filePath = "/" + filePath;
+}
+        return filePath;
+    }
+
+    public Resource(String filePath, String delimiter) throws IOException{
+		URL f = Resource.class.getClassLoader().getResource(addLeadingSlash(filePath));
 		reader = new BufferedReader(
 		        new InputStreamReader(f.openStream()));
 		scan = new Scanner(reader);

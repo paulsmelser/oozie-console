@@ -28,9 +28,9 @@ public class OozieClientStub implements OozieClient {
     }
 
     public Collection<Coordinator> getRunningCoordinators(int len) throws MapperException {
-        GetRunningCoordinatorsResponse coords = gateway.getRunningCoordinators();
+        GetRunningCoordinatorsResponse coordinators = gateway.getRunningCoordinators();
         Collection<Coordinator> result = new ArrayList<Coordinator>();
-        for (CoordinatorDto dto : coords.getCoordinatorjobs()) {
+        for (CoordinatorDto dto : coordinators.getCoordinatorjobs()) {
             result.add(Mapper.map(dto, Coordinator.class));
         }
         return result;
