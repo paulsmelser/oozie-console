@@ -41,6 +41,7 @@ public class CoordinatorResource {
         RetryTemplate template = new RetryTemplate();
         template.setBackOffPolicy(getBackOffPolicy());
         template.setRetryPolicy(getRetryPolicy());
+
         return template.execute(retryContext -> {
             if (retryContext.getRetryCount() < 7) {
                 throw new RuntimeException();
