@@ -77,7 +77,8 @@ allprojects {
         testCompile(
                 [group: 'org.springframework.boot', name:'spring-boot-starter-test'],
                 [group: 'junit',                    name:'junit'],
-                [group: 'org.mockito',              name:'mockito-core']
+                [group: 'org.mockito',              name:'mockito-core'],
+                [group: 'org.spockframework',       name: 'spock-core', version: '1.0-groovy-2.4']
         )
     }
 
