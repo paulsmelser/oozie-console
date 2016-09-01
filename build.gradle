@@ -18,24 +18,11 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.hidetake.ssh' version '1.1.4'
-    id 'nebula.ospackage' version '3.4.0'
+    id "com.moowork.node" version "0.12"
+    id "com.moowork.gulp" version "0.12"
 }
 
 apply plugin: 'spring-boot'
-
-ospackage {
-    release '3'
-    os = LINUX // only applied to RPM
-    into 'build/opt/app1'
-    from ('dist') {
-        user 'builds'
-        exclude '**/*.rb'
-    }
-}
-
-buildRpm {
-    version '1.2.3'
-}
 
 jar {
     baseName = 'oozie-console'
@@ -46,16 +33,13 @@ springBoot {
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
     maven{
         url "https://github.com/paulsmelser/maven-repo/raw/master/"
     }
 }
 
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile project(":oozie-rest-client")
     compile project(":oozie-web")
     compile project(":oozie-application")
@@ -63,26 +47,39 @@ dependencies {
 
 allprojects {
     apply plugin: 'java'
+    apply plugin: 'spring-boot'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
     repositories {
-        mavenCentral()
+        jcenter()
         maven{
                 url "https://github.com/paulsmelser/maven-repo/raw/master/"
         }
     }
 
+    dependencyManagement{
+        dependencies{
+            dependency group:'com.sun.jersey',  name:'jersey-client',   version: '1.18.3'
+        }
+    }
+
     dependencies{
-        compile("org.springframework.boot:spring-boot-starter-web")
-        compile("org.springframework.boot:spring-boot-starter-actuator")
-        compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-        testCompile("org.springframework.boot:spring-boot-starter-test")
-        compile("com.thoughtworks.xstream:xstream:1.4.7")
-        compile("com.sun.jersey:jersey-client:1.18.3")
-        compile("com.smelser:simple-mapper:1.0.3")
-        compile("com.owlike:genson:0.99")
-        compile("com.google.code.gson:gson:2.3.1")
-        testCompile("junit:junit")
-        testCompile("org.mockito:mockito-core")
+        compile(
+                [group:'org.springframework.boot',  name:'spring-boot-starter-web'],
+                [group:'org.springframework.boot',  name:'spring-boot-starter-actuator'],
+                [group:'org.springframework.boot',  name:'spring-boot-starter-thymeleaf'],
+                [group:'com.smelser',               name:'simple-mapper',                   version: '1.0.3'],
+                [group:'com.owlike',                name:'genson',                          version: '0.99'],
+                [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1']
+        )
+
+        testCompile(
+                [group: 'org.springframework.boot', name:'spring-boot-starter-test'],
+                [group: 'junit',                    name:'junit'],
+                [group: 'org.mockito',              name:'mockito-core'],
+                [group: 'org.spockframework',       name: 'spock-core', version: '1.0-groovy-2.4']
+        )
     }
 
     tasks.withType(JavaCompile) {
@@ -96,8 +93,6 @@ bootRun {
             'spring.profiles.active': "dev"
     ]
 }
-
-
 
 subprojects {
     group = 'com.smelser.oozie'
@@ -122,5 +117,45 @@ task deploy << {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '2.14'
 }
+
+def generatedWebResources = "${buildDir}/generated-web-resources"
+sourceSets {
+    main {
+        output.dir(generatedWebResources, builtBy: 'gulp_build')
+    }
+}
+
+// configure gradle-node-plugin
+node {
+    version = '6.2.0'
+    npmVersion = '3.9.2'
+    download = true
+    workDir = file("${project.projectDir}/oozie-web/src/main/web/node")
+    nodeModulesDir = file("${project.projectDir}/oozie-web/src/main/web")
+}
+
+// configure gradle-grunt-plugin
+gulp {
+    workDir = file("${project.projectDir}/oozie-web/src/main/web");
+    colors = true
+    bufferOutput = false
+}
+
+task npmClean(type: Delete) {
+    final def webDir = "${rootDir}/oozie-web/src/main/web"
+    delete "${webDir}/node"
+    delete "${webDir}/node_modules"
+    delete "${webDir}/typings"
+}
+
+compileJava.dependsOn(processResources);
+// build front-end before making jar
+processResources.dependsOn(npmInstall)
+npmInstall.finalizedBy(gulp_build)
+
+// run npmClean before clean
+clean.dependsOn(npmClean)
+
+

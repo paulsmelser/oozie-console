@@ -1,12 +1,15 @@
-apply plugin: 'spring-boot'
 apply plugin: 'maven'
 
 group = 'com.smelser'
 version = '1.0.0.1'
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-aop")
-    compile("org.webjars:bootstrap:3.2.0")
+    compile(
+            [group: "org.springframework.boot",     name: "spring-boot-starter-aop"],
+            [group:'com.sun.jersey',                name:'jersey-client'],
+            [group:'com.thoughtworks.xstream',      name:'xstream',                     version: '1.4.7'],
+            [group: "org.webjars",                  name:"bootstrap",                   version:"3.2.0"]
+    )
 }
 
 uploadArchives {

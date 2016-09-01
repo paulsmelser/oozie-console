@@ -75,7 +75,7 @@ public class DefaultOozieGateway implements OozieGateway {
 	    }
         CoordinatorActionDto[] actionArray = result.getActions().toArray(
             new CoordinatorActionDto[result.getActions().size()]);
-        Collection<CoordinatorActionDto> actions = new ArrayList<>();
+        Collection<CoordinatorActionDto> actions = new ArrayList<CoordinatorActionDto>();
         for (int i = actionArray.length - 1; i != -1; i--) {
             actions.add(actionArray[i]);
         }

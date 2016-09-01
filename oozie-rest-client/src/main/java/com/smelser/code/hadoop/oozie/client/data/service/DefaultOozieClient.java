@@ -68,13 +68,13 @@ public class DefaultOozieClient implements OozieClient {
     }
 
     public CoordinatorAction getCoordinatorAction(String id, int index) throws  MapperException {
-	Coordinator coord = Mapper.map(gateway.getCoordinator(id, 100), Coordinator.class);
-	Iterator<CoordinatorAction> it = coord.getActions().iterator();
+		Coordinator coord = Mapper.map(gateway.getCoordinator(id, 100), Coordinator.class);
+		Iterator<CoordinatorAction> it = coord.getActions().iterator();
 
-	for (int i = 0; i != index; i++) {
-	    it.next();
-	}
-	return it.next();
+		for (int i = 0; i != index; i++) {
+			it.next();
+		}
+		return it.next();
     }
 
     public void kill(String id) {

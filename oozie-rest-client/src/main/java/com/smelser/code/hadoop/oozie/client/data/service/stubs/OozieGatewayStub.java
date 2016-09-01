@@ -1,8 +1,6 @@
 package com.smelser.code.hadoop.oozie.client.data.service.stubs;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 
 import com.smelser.code.hadoop.oozie.client.dto.GetKilledOrFailedWorkflowsResponse;
@@ -18,7 +16,9 @@ import com.smelser.code.hadoop.oozie.client.utils.Resource;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-public class OozieGatewayStub implements OozieGateway {
+class OozieGatewayStub implements OozieGateway {
+
+    private static final Gson GSON = new Gson();
 
     public GetWorkflowListResponse getWorkflows() {
 	return null;
@@ -28,11 +28,9 @@ public class OozieGatewayStub implements OozieGateway {
         GetRunningCoordinatorsResponse list = null;
         try {
             Resource resource = new Resource("coordinatorList.json");
-            Gson gson = new Gson();
 
-            list = gson.fromJson(resource.getAsString(), GetRunningCoordinatorsResponse.class);
+            list = GSON.fromJson(resource.getAsString(), GetRunningCoordinatorsResponse.class);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return list;
@@ -42,9 +40,8 @@ public class OozieGatewayStub implements OozieGateway {
         CoordinatorDto result = null;
         try {
             Resource resource = new Resource("coordinator.json");
-            Gson gson = new Gson();
 
-            result = gson.fromJson(resource.getAsString(), CoordinatorDto.class);
+            result = GSON.fromJson(resource.getAsString(), CoordinatorDto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,9 +52,8 @@ public class OozieGatewayStub implements OozieGateway {
 	WorkflowDto result = null;
 	try {
 	    Resource file = new Resource("workflow.json");
-	    Gson gson = new Gson();
 
-	    result = gson.fromJson(file.getAsString(), WorkflowDto.class);
+	    result = GSON.fromJson(file.getAsString(), WorkflowDto.class);
 	} catch (JsonSyntaxException | IOException e) {
 	    e.printStackTrace();
 	}
