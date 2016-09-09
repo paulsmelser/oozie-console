@@ -42,12 +42,7 @@ public class CoordinatorResource {
         template.setBackOffPolicy(getBackOffPolicy());
         template.setRetryPolicy(getRetryPolicy());
 
-        return template.execute(retryContext -> {
-            if (retryContext.getRetryCount() < 7) {
-                throw new RuntimeException();
-            }
-            return serviceLocator.getOozieClient().getRunningCoordinators(100);
-        });
+        return template.execute(retryContext -> serviceLocator.getOozieClient().getRunningCoordinators(100));
     }
 
     private ExponentialBackOffPolicy getBackOffPolicy() {
