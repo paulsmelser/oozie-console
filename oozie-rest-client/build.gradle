@@ -8,7 +8,8 @@ dependencies {
             [group: "org.springframework.boot",     name: "spring-boot-starter-aop"],
             [group:'com.sun.jersey',                name:'jersey-client'],
             [group:'com.thoughtworks.xstream',      name:'xstream',                     version: '1.4.7'],
-            [group: "org.webjars",                  name:"bootstrap",                   version:"3.2.0"]
+            [group: 'org.webjars',                  name:"bootstrap",                   version:"3.2.0"],
+            [group: 'ma.glasnost.orika', name: 'orika-core', version: '1.4.6']
     )
 }
 

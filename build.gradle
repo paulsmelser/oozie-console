@@ -69,7 +69,7 @@ allprojects {
                 [group:'org.springframework.boot',  name:'spring-boot-starter-web'],
                 [group:'org.springframework.boot',  name:'spring-boot-starter-actuator'],
                 [group:'org.springframework.boot',  name:'spring-boot-starter-thymeleaf'],
-                [group:'com.smelser',               name:'simple-mapper',                   version: '1.0.3'],
+                [group:'com.smelser',               name:'simple-mapper',                   version: '0.1.2'],
                 [group:'com.owlike',                name:'genson',                          version: '0.99'],
                 [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1']
         )
@@ -78,7 +78,8 @@ allprojects {
                 [group: 'org.springframework.boot', name:'spring-boot-starter-test'],
                 [group: 'junit',                    name:'junit'],
                 [group: 'org.mockito',              name:'mockito-core'],
-                [group: 'org.spockframework',       name: 'spock-core', version: '1.0-groovy-2.4']
+                [group: 'org.spockframework',       name: 'spock-core',                     version: '1.0-groovy-2.4'],
+                [group: 'org.assertj',              name: 'assertj-core',                   version: '3.5.2']
         )
     }
 

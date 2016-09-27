@@ -21,6 +21,6 @@ export class CoordinatorListComponent implements OnInit{
     }
 
     details(coord){
-        this.router.navigate(["/coordinator/"+coord.coordJobId]);
+        this.router.navigateByUrl("/coordinator/"+coord.coordJobId);
     }
 }
