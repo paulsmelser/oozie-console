@@ -1,4 +1,4 @@
-package com.smelser.code.hadoop.oozie.client.utils;
+package org.smelser.oozie;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;

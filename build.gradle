@@ -71,7 +71,8 @@ allprojects {
                 [group:'org.springframework.boot',  name:'spring-boot-starter-thymeleaf'],
                 [group:'com.smelser',               name:'simple-mapper',                   version: '0.1.2'],
                 [group:'com.owlike',                name:'genson',                          version: '0.99'],
-                [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1']
+                [group:'com.google.code.gson',      name:'gson',                            version: '2.3.1'],
+                [group:'org.springframework.retry', name:'spring-retry']
         )
 
         testCompile(
