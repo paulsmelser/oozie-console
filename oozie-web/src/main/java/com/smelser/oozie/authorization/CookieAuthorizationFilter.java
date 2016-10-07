@@ -1,8 +1,8 @@
 package com.smelser.oozie.authorization;
 
-import com.smelser.oozie.data.OozieClientFactory;
-import com.smelser.oozie.utilities.ServiceLocator;
-import org.springframework.stereotype.Component;
+import static java.util.Objects.nonNull;
+
+import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,14 +12,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
-import static java.util.Objects.nonNull;
+import com.smelser.oozie.data.OozieClientFactory;
+import com.smelser.oozie.utilities.ServiceLocator;
 
 /**
  * Created by psmelser on 16-07-05.
  *
- * @author paul.smelser@esignlive.com
+ * @author paul.smelser@gmail.com
  */
 public class CookieAuthorizationFilter implements Filter {
 

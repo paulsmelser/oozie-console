@@ -5,19 +5,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EmptyStackException;
 import java.util.Locale;
-import java.util.Random;
 import java.util.TimeZone;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 @Component
-public class JsonUtils {
+public class JsonUtils extends Utils{
 
     int hi = 1;
-    StopWatch stopWatch = new StopWatch();
+
+    @Autowired
+    public JsonUtils(StopWatch stopWatch) {
+       super(stopWatch);
+    }
 
     /**
      * Format a Date in RFC822 GMT.

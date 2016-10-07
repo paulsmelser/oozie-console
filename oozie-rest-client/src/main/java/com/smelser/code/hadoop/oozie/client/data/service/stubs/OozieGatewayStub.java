@@ -27,7 +27,7 @@ class OozieGatewayStub implements OozieGateway {
     public GetRunningCoordinatorsResponse getRunningCoordinators() {
         GetRunningCoordinatorsResponse list = null;
         try {
-            Resource resource = new Resource("coordinatorList.json");
+            Resource resource = Resource.fromFile("coordinatorList.json");
 
             list = GSON.fromJson(resource.getAsString(), GetRunningCoordinatorsResponse.class);
         } catch (IOException e) {
@@ -39,9 +39,9 @@ class OozieGatewayStub implements OozieGateway {
     public CoordinatorDto getCoordinator(String id, int len) {
         CoordinatorDto result = null;
         try {
-            Resource resource = new Resource("coordinator.json");
-
-            result = GSON.fromJson(resource.getAsString(), CoordinatorDto.class);
+            Resource resource = Resource.fromFile("coordinator.json");
+            String resourceString = resource.getAsString();
+            result = GSON.fromJson(resourceString, CoordinatorDto.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ class OozieGatewayStub implements OozieGateway {
     public WorkflowDto getWorkflow(String id, int len) {
 	WorkflowDto result = null;
 	try {
-	    Resource file = new Resource("workflow.json");
+	    Resource file = Resource.fromFile("workflow.json");
 
 	    result = GSON.fromJson(file.getAsString(), WorkflowDto.class);
 	} catch (JsonSyntaxException | IOException e) {

@@ -1,11 +1,9 @@
 package com.smelser.oozie.coordinators;
 
-import com.google.common.collect.Lists;
-import com.smelser.code.hadoop.oozie.client.entities.Coordinator;
-import com.smelser.oozie.utilities.ServiceLocator;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.retry.RetryCallback;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.backoff.ExponentialBackOffPolicy;
 import org.springframework.retry.backoff.ThreadWaitSleeper;
@@ -15,14 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import simplemapper.MapperException;
 
-import java.util.Collection;
+import com.smelser.code.hadoop.oozie.client.entities.Coordinator;
+import com.smelser.oozie.retry.ExponentialRetryTemplate;
+import com.smelser.oozie.utilities.ServiceLocator;
+import simplemapper.MapperException;
 
 /**
  * Created by psmelser on 16-07-05.
  *
- * @author paul.smelser@esignlive.com
+ * @author paul.smelser@gmail.com
  */
 @RestController
 @RequestMapping("api/v1")
@@ -38,28 +38,10 @@ public class CoordinatorResource {
 
     @RequestMapping(value = "coordinators", method = RequestMethod.GET)
     public Collection<Coordinator> getCoordinators() throws MapperException {
-        RetryTemplate template = new RetryTemplate();
-        template.setBackOffPolicy(getBackOffPolicy());
-        template.setRetryPolicy(getRetryPolicy());
-
-        return template.execute(retryContext -> serviceLocator.getOozieClient().getRunningCoordinators(100));
+        return ExponentialRetryTemplate.newRetryTemplate().execute(retryContext -> serviceLocator.getOozieClient().getRunningCoordinators(100));
     }
-
-    private ExponentialBackOffPolicy getBackOffPolicy() {
-        ExponentialBackOffPolicy exponentialBackOffPolicy = new ExponentialBackOffPolicy();
-        exponentialBackOffPolicy.withSleeper(new ThreadWaitSleeper());
-        exponentialBackOffPolicy.setMaxInterval(100000);
-        return exponentialBackOffPolicy;
-    }
-
-    private RetryPolicy getRetryPolicy() {
-        SimpleRetryPolicy policy = new SimpleRetryPolicy();
-        policy.setMaxAttempts(8);
-        return policy;
-    }
-
     @RequestMapping(value = "coordinator/{id}", method = RequestMethod.GET)
-    public Coordinator getCoordinator(@PathVariable String id) throws  MapperException {
-        return serviceLocator.getOozieClient().getCoordinator(id, 50);
+    public Coordinator getCoordinator(@PathVariable String id) throws MapperException {
+        return ExponentialRetryTemplate.newRetryTemplate().execute(retryContext ->serviceLocator.getOozieClient().getCoordinator(id, 50));
     }
 }

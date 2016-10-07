@@ -8,12 +8,15 @@ import {CoordinatorService} from "./coordinator.service";
     directives: [ROUTER_DIRECTIVES],
 })
 export class CoordinatorComponent implements OnInit{
-    private coord : String;
+    private coord;
+    private coordString : String;
     constructor(private coordinatorService: CoordinatorService, private route: RouteSegment) {}
 
     ngOnInit(): void {
         this.coordinatorService.getCoordinator(this.route.getParam("id"))
-            .subscribe(data => this.coord = data.json());
-
+            .map(data => data.json()).subscribe(json => {
+            this.coord = json;
+            this.coordString = this.coord;
+        });
     }
 }

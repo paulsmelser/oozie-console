@@ -10,8 +10,12 @@ public class Resource {
 
 	private BufferedReader reader;
 	private Scanner scan;
-	
-	public Resource(String filePath) throws IOException{
+
+
+    public static Resource fromFile(String filePath) throws IOException {
+        return new Resource(filePath);
+    }
+	private Resource(String filePath) throws IOException{
         URL f = Resource.class.getClassLoader().getResource(addLeadingSlash(filePath));
 		reader = new BufferedReader(
 		        new InputStreamReader(f.openStream()));

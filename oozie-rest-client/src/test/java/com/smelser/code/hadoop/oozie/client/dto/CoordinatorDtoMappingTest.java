@@ -18,7 +18,7 @@ public class CoordinatorDtoMappingTest {
     @Test
     public void test() throws IOException, MapperException {
 
-        Resource resource = new Resource("coordinator.json");
+        Resource resource = Resource.fromFile("coordinator.json");
         MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(CoordinatorDto.class, Coordinator.class);
 

@@ -9,7 +9,7 @@ public class ResourceTests {
 
 	@Test
 	public void testResource() throws IOException {
-		Resource r = new Resource("worklow.json");
+		Resource r = Resource.fromFile("worklow.json");
 		System.out.println(r.getAsString());
 	}
 
